@@ -1,3 +1,5 @@
+> 歷史文件：描述 v0.1 benchmark。v0.2 使用 Lexical 0.18.0，請以 [README](README.md) 與 [實驗契約](docs/EXPERIMENT_CONTRACT.md) 為準。
+
 # Agent investigation guide
 
 Use this public repository as a controlled reference for slow post-injection rendering in a target project. It contains synthetic fixtures only. Keep target-specific source, documents, traces and findings in the destination authorized by the project owner.

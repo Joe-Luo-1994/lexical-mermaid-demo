@@ -1,3 +1,5 @@
+> 歷史文件：描述 v0.1 benchmark。v0.2 使用 Lexical 0.18.0，請以 [README](README.md) 與 [實驗契約](docs/EXPERIMENT_CONTRACT.md) 為準。
+
 # 圖表暖機：目前計時包含與排除什麼
 
 按下「準備資料」時，程式不只下載 Mermaid library。它會對每張選定圖表呼叫 mermaid.render，取得 SVG，再清掉離屏容器。

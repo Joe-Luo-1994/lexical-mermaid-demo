@@ -1,0 +1,133 @@
+{
+  "checkedAt": "2026-11-09T16:09:32.791Z",
+  "browser": "156.0.8078.79",
+  "recordings": 15,
+  "checks": [
+    "real UI normal and duplicate",
+    "evidence selection",
+    "guarded comparison",
+    "adjacent noncausal control",
+    "external / prebuilt / placeholder",
+    "80k + 10 diagrams / tables",
+    "trusted editor typing without regeneration",
+    "export / import / invalid input",
+    "mobile overflow",
+    "separate Chrome trace"
+  ],
+  "overhead": {
+    "pairs": [
+      {
+        "off": 721.5999999996275,
+        "light": 651.8999999985099,
+        "delta": -69.70000000111759
+      },
+      {
+        "off": 624.1000000014901,
+        "light": 660.9000000003725,
+        "delta": 36.79999999888241
+      },
+      {
+        "off": 582.1000000014901,
+        "light": 594.1000000014901,
+        "delta": 12
+      },
+      {
+        "off": 582.4000000003725,
+        "light": 587.8999999985099,
+        "delta": 5.499999998137355
+      }
+    ],
+    "medianDeltaMs": 8.749999999068677,
+    "interpretation": "4 exploratory paired runs on one machine; not a stable overhead budget or general performance claim"
+  },
+  "errors": [],
+  "examples": [
+    {
+      "scenario": "normal",
+      "mode": "inline",
+      "chars": 20000,
+      "diagrams": 5,
+      "requests": 5,
+      "completionProxyMs": 1210.699999999255,
+      "findings": [
+        "mermaid-requests",
+        "main-thread-blocking"
+      ]
+    },
+    {
+      "scenario": "duplicate",
+      "mode": "inline",
+      "chars": 20000,
+      "diagrams": 5,
+      "requests": 10,
+      "completionProxyMs": 1502.9000000003725,
+      "findings": [
+        "repeated-mermaid-requests",
+        "main-thread-blocking"
+      ]
+    },
+    {
+      "scenario": "adjacent",
+      "mode": "inline",
+      "chars": 20000,
+      "diagrams": 5,
+      "requests": 5,
+      "completionProxyMs": 589.6000000014901,
+      "findings": [
+        "mermaid-requests",
+        "main-thread-blocking"
+      ]
+    },
+    {
+      "scenario": "normal",
+      "mode": "external",
+      "chars": 20000,
+      "diagrams": 5,
+      "requests": 5,
+      "completionProxyMs": 545.4000000003725,
+      "findings": [
+        "mermaid-requests",
+        "main-thread-blocking"
+      ]
+    },
+    {
+      "scenario": "normal",
+      "mode": "svg",
+      "chars": 20000,
+      "diagrams": 5,
+      "requests": 0,
+      "completionProxyMs": 41.29999999888241,
+      "findings": [
+        "main-thread-blocking"
+      ]
+    },
+    {
+      "scenario": "normal",
+      "mode": "placeholder",
+      "chars": 20000,
+      "diagrams": 5,
+      "requests": 0,
+      "completionProxyMs": 23.09999999962747,
+      "findings": []
+    },
+    {
+      "scenario": "normal",
+      "mode": "inline",
+      "chars": 80000,
+      "diagrams": 10,
+      "requests": 10,
+      "completionProxyMs": 1152.4000000003725,
+      "findings": [
+        "mermaid-requests",
+        "main-thread-blocking"
+      ]
+    }
+  ],
+  "sdkValidation": {
+    "package": "@opencode/plugin",
+    "version": "2.2.5",
+    "effect": "4.0.6",
+    "testsPassed": 3,
+    "fullWebRuntimeTested": false
+  }
+}

@@ -1,97 +1,99 @@
-# Lexical × Mermaid injection lab · v2
+# Editor Evidence · v0.2
 
-直接注入預先建立的 Lexical EditorState。排除 Markdown parser 與反序列化時間，測量混合格式文件、多張 Mermaid、表格與編輯器的整合成本。
+**第一次來？從 [START-HERE.md](START-HERE.md) 開始。** 有可直接貼給 agent 的起始指令、五步體驗、安裝受阻時的零依賴範例，以及公司案例的蒐證入口。
 
-## 使用
+重現一次 Lexical 內容注入，保留事件證據，找出下一個值得做的實驗，再比較結果。這是可操作的診斷原型，使用混合格式工程文件、真實 Lexical nodes 與 5–10 張不同布局的 Mermaid 圖。
 
-需要 Node.js 24 與 npm。
+**固定版本：Lexical 0.18.0、React 18.3.1、Mermaid 12.3.0。** OpenCode 2.2.5 Web 已有一次本機 Windows 接合驗證，包含兩個獨立 session；新環境仍需重驗，agent 判讀仍需審查。[本機證據摘要](docs/WINDOWS-VALIDATION.md)。公開案例不能證明公司專案的根因。
+
+[驗證紀錄](docs/VALIDATION.md) · [探索決策](docs/EXPLORATION.md) · [手機畫面](docs/assets/findings-mobile.png)
+
+![配對實驗與可查證差異](docs/assets/experiment-overview.png)
+
+## 啟動
+
+使用 Node.js 24。內網環境先準備 lockfile 對應的套件；執行頁面不需要 CDN。
 
 ```sh
 npm ci
-npm run validate
 npm run build
 npm run preview
 ```
 
-網頁依序選擇實驗組、約 20k／50k／80k 字元、5／10 張圖，以及自然／固定高度。按「準備資料」後按「注入 content」。準備階段會先暖機每種圖表類型，可能需等待數秒；它不列入注入計時。
+開啟 preview 顯示的網址。效能比較使用 production build；`npm run dev` 適合開發與除錯。
 
-## 接近工程文件的合成資料
+## 第一次使用
 
-內容是一份文件匯入架構與營運手冊，包含多層標題、粗體、斜體、刪除線、inline code、連結、引用、巢狀清單、JavaScript 程式碼及情境矩陣。使用真正的 Lexical rich text、list、link、code、table nodes，並載入 ListPlugin、TablePlugin 與 LinkPlugin。
+想先體驗完整價值，可按 **一鍵驗證差異**：固定 20k／5 圖／節點內生成／輕量記錄，每輪暖機，正常與刻意重複情境各錄 10 次，AB／BA 交錯。保持頁面前景；可在當前操作完成後停止，背景切換也會停止並排除當前配對。其他完整配對與單筆記錄保留。
 
-每章有一張 4 欄 × 8 列的表格及一張圖。圖表分散於不同章節，不集中在首屏：
+摘要呈現兩組中位數／範圍、配對差值中位數與方向計數，不將它稱為統計顯著或穩定改善。展開「追到每一筆證據」可回到指定 recording；**下載實驗證據包**會保存每筆原始 recording，用「載入記錄」還原並重新計算。任一筆版本、暖機、文件、viewport 或 tracing 條件不同，就阻止整組彙總，不偷偷剔除不利樣本。證據包最多 10 組／16 MB；單筆 recording 維持 2 MB。CLI／OpenCode 工具仍讀**單筆** recording：在選定記錄按 JSON 匯出即可。
 
-1. 左至右的服務架構 flowchart，含 subgraph。
-2. 多參與者 sequence diagram，含 loop 與 alt。
-3. 含巢狀狀態的 state diagram。
-4. 七個實體的 ER diagram。
-5. 介面、繼承與依賴的 class diagram。
-6. 分階段上線 Gantt。
-7. 多角色 user journey。
-8. 多層 mind map。
-9. 上至下、含分流與 subgraph 的 recovery flowchart。
-10. 含 merge／hotfix 的 git graph。
+這個對照是公開合成案例的管線驗證；不能證明公司專案的請求多餘。記錄只含證據，不包含完整 editor 重播資料；載入記錄不會重播編輯器內容。
 
-5 張方案使用前五章；10 張使用全部。每章有其對應的敘述、驗收條件、表格、程式碼與觀測案例。大文件透過增加具有情境的觀測段落擴充，仍屬合成資料，並非使用者產品實際文件。
+1. 保留「正常流程／在節點內繪圖／約 20k 字元／5 張圖」，按 **錄製這次操作**。同一個按鈕會完成資料準備、暖機、注入與記錄。
+2. 在「觀測與下一步」閱讀實際事件產生的診斷，點證據 ID 展開原始事件。
+3. 將測試情境切成「重複繪圖案例」，再次錄製。其餘條件保持相同。
+4. 開啟「比較實驗」，選正常流程為基準 A。目前記錄為 B。兩筆差異不是穩定效能收益，正式驗收需要重複量測。
+5. 按 **JSON** 下載單次 recording；按 **複製給 OpenCode** 取得交接文字。把 JSON 放進本機 OpenCode worktree，再貼上文字。此動作不會自動傳送訊息。
 
-字元數是文字與 Mermaid source 的 JavaScript string length，不是 bytes，也不是 Markdown source length。保持章節完整，因此略高於目標值。準備後與結果表都顯示實際字元、nodes、tables 數量。
+記錄目前只存在頁面記憶體；重新整理前請匯出。可用「載入記錄」重新開啟 JSON，瀏覽器會驗證格式並重新計算診斷。若剪貼簿不可用，交接文字會改成下載檔案。
 
-## 實驗組
+## 實驗範圍
 
-| 組別 | 實作 |
-|---|---|
-| A | 相同 MermaidNode，保留空白佔位，不生成圖表 |
-| B | 準備階段生成所有 SVG，注入後插入 |
-| C | 掛載後在各節點內呼叫 Mermaid render |
-| D | 在 editor 外離屏容器生成，再插入對應節點 |
+- **情境**：正常流程、刻意重複繪圖、獨立事件對照。診斷規則讀取事件，不以情境名稱猜答案。
+- **繪圖**：節點內生成、同一 document 的畫面外容器、預生成 SVG、只顯示佔位。
+- **文件**：約 20k／50k／80k 字元，5／10 張圖；多層標題、格式文字、連結、引用、巢狀清單、程式碼與真正的表格 nodes。
+- **圖表**：flowchart、sequence、state、ER、class、Gantt、journey、mindmap、另一張不同布局的 flowchart 與 git graph。
+- **量測設定**：自然／固定高度、輕量事件／關閉事件。關閉事件仍保留基本計時與請求數，並非零 instrumentation。
 
-四組使用同一份文件。B 把生成移到計時範圍外，僅用於歸因，不代表端到端加速。C/D 沒有應用層 SVG 快取；Mermaid 的公開 render API 可能在內部排隊，並不代表十張圖平行計算。
+每次操作前會生成所有圖表一次，這段暖機不計入注入時間。預生成 SVG 模式還把繪圖工作移出量測區間，適合歸因，不能宣稱端到端加速。畫面外容器仍在同一 document，不等於 iframe 或 worker 隔離。
 
-預設自然高度，使各種圖表高度變動反映到長文件排版；A 的佔位高度不等於成圖高度，因此不能把 A/B 差距全歸因於 SVG DOM 複雜度。切換固定 260 px 可限制尺寸變動這個變因。桌面容器寬 760 px；外部生成仍在同一 document，沒有 iframe 或 CSS containment。手機較窄時內外寬度可能不同，不適合直接歸因於容器位置。
+## 三種證據檔案
 
-## 量測
+| 檔案 | 用途 | 界線 |
+|---|---|---|
+| 工作台 JSON recording | 環境、設定、計時、事件、觀測與限制；可重新載入或交給 agent | 第一版 schemaVersion 1，非任意 editor 自動錄製 |
+| 工作台「語意 trace」 | 以 trace-event 格式展示已記錄的操作／圖表事件，可載入 Perfetto | **不是 CPU profile 或完整 browser performance trace**；owner 分軌不代表 OS thread |
+| `scripts/trace.mjs` 產生的 Chrome trace | 透過 CDP 收集 browser timeline，深入檢查 layout／paint 等工作 | tracing 有額外成本，與非 tracing 的驗收分開 |
 
-起點是 `editor.setEditorState()` 前。逐張記錄 decorator commit、生成請求、回傳與插入；**等全部圖表成功或失敗後**，才記錄完成代理值。
+完成代理值是「全部圖表插入後兩次 rAF」，不是實際 paint 完成或可互動時間。Mermaid 請求區間含內部排隊與等待；重疊 span 不可相加作為 CPU 成本。Long task 的時間鄰近也不足以歸因給某個 plugin。
 
-- Commit：帶 benchmark tag 的 Lexical update listener。
-- 生成區間：第一張生成請求到最後一張回傳，包含排隊與等待。
-- 各圖表耗時：該圖請求到回傳，包含 Mermaid 內部佇列，不是獨立 CPU 時間。不能將所有圖的等待耗時相加當總時間。
-- 完成代理值：所有圖插入後兩次 rAF，不是 paint 完成保證。
-- Long task：注入區間內與 >50 ms task 重疊的片段；0 不代表無短暫阻塞。自訂 blockingOver50Ms 不是 Lighthouse TBT。
-- 完成之後再保留 180 ms 收集 observer／輸入；這段等待不計入完成時間。
-
-結果可匯出 JSON，包含每張圖的類型、原始碼長度、耗時、錯誤與插入時間。生成結果只更新對應 DOM，不回寫 editor state。
-
-## 驗證與重跑
-
-`npm run validate` 已通過六組 fixture 的 Lexical 反序列化／序列化與結構檢查，以及十張圖的 Mermaid 語法解析。語法檢查在 Node + jsdom 執行；它不是瀏覽器渲染或效能測試。
-
-Production build 已通過。本快照尚未執行 rich-fixture 瀏覽器測試或效能矩陣；測試腳本已提供，請在自己的環境執行。不得將較簡單 fixture 的歷史結果套用到本版本。
-
-在具有瀏覽器執行能力的本機可執行：
+## Agent 查詢與驗證
 
 ```sh
-npx playwright install chromium
-npm test
+node scripts/report-query.mjs recordings/my-run.json
+node scripts/report-query.mjs recordings/my-run.json --event <事件ID>
+npm run test:rules
+npm run validate
+npm run build
+npm run test:browser
+```
+
+`test:rules` 驗證診斷／比較邏輯及有界查詢；`validate` 是 headless 文件與 Mermaid 語法檢查，不能替代瀏覽器測試。`test:browser` 使用 Playwright，先提供已安裝的 Chromium（可設定 `BROWSER_PATH`），或在允許下載的環境預先安裝 Playwright Chromium。
+
+最短交接路徑是 `node scripts/report-query.mjs <recording.json>`，不需 plugin。選用的 **OpenCode V2 plugin** 位於 `docs/integrations/`，使用實際 `@opencode/plugin@2.2.5` API。SDK及一次Windows Web接合已有驗證，不能代替新機測試。啟用時以 `plugins` 設定指向該**目錄**；clone 不會自動載入。CLI 驗證結構與引用，保留的 findings 仍需 agent 查證。完整步驟與文件／原始碼差異見 [OpenCode 交接](docs/OPENCODE.md)。
+
+實測狀態必須以當次輸出為準。原 benchmark 的歷史結果不套用到這個 0.18.0 分支；第一版完整瀏覽器驗證及 OpenCode runtime 的狀態分別記錄。
+
+## 保留的 benchmark 腳本
+
+以下延續原注入 benchmark API，供更大矩陣與深入 tracing。它們是額外檢查，不是每次 UI 改動都需執行的預設流程。
+
+```sh
+npm run test:legacy
 npm run bench
 node scripts/trace.mjs inline 80000 10
 node scripts/trace.mjs external 80000 10
 ```
 
-`npm test` 定義 24 組案例（四模式 × 三規模 × 兩圖表數，預設自然高度），檢查所有 SVG／表格、實際鍵盤輸入、無關編輯不重畫、外部容器清理。這些是待執行的新版測試，不是已通過的結果。
+`npm run test:legacy` 是原本 24 組模式／大小／圖表數的瀏覽器檢查；`bench` 交錯量測並保存 JSON／CSV。`BROWSER_PATH` 指定 Chromium、`PORT` 更換 preview port、`BENCH_URL` 使用既有伺服器，`REPETITIONS` 控制 benchmark 次數。這些舊腳本需在本分支實際執行後才可宣稱通過。
 
-`npm run bench` 每組五次、固定 seed 打散，輸出原始 JSON、CSV 與中位數。另做獨立輸入探測。測試過程關閉結果表格更新，以免額外 DOM 影響比較。`BROWSER_PATH` 指定 Chromium；`PORT` 更換本機 preview port；`BENCH_URL` 使用既有伺服器；`REPETITIONS` 控制次數。
+## 持續驗證
 
-## 主要檔案
+- [實驗契約](docs/EXPERIMENT_CONTRACT.md)：使用者價值、量測條件與停止標準。
+- [實測紀錄](docs/VALIDATION.md)：本輪瀏覽器、診斷與 SDK 驗證，以及尚未成立的結論。
+- [診斷規則](docs/DIAGNOSTIC_RULES.md)：證據、反例與比較條件。
+- [OpenCode 2.2.5 交接](docs/OPENCODE.md)：本機使用、內網準備與 runtime 驗收。
+- [診斷 skill](.opencode/skills/editor-diagnosis/SKILL.md)：觀測、解釋、下一個可否證實驗。
 
-- `src/fixtures.ts`：合成文件、十張 Mermaid、字元與 node 統計。
-- `src/nodes.ts`：rich text / table / list / code 節點註冊。
-- `src/lab.ts`：準備、注入、每圖計時與全部完成條件。
-- `src/MermaidNode.tsx`：獨立圖表呈現、過期結果檢查與錯誤顯示。
-- `scripts/validate-fixtures.mjs`：已執行的資料與語法檢查。
-
-[Mermaid render API](https://mermaid.js.org/config/usage.html#api-usage) · [Lexical nodes](https://lexical.dev/docs/concepts/nodes) · [Chrome Performance](https://developer.chrome.com/docs/devtools/performance/reference)
-
-## 暖機與 Agent 交接
-
-本版本是 **warm-render benchmark**，不是首次生成測試。請先閱讀 [WARMUP.md](WARMUP.md) 與 [AGENT_HANDOFF.md](AGENT_HANDOFF.md)。所有依賴版本固定於 package.json / package-lock.json；不同 Lexical 版本的 schema 與 API 可能需要適配。
+`src/lab.ts` 負責記錄；`src/diagnostics.ts` 分析與比較；`src/main.tsx` 提供人類介面；`src/fixtures.ts` 保存合成文件。原有 `WARMUP.md`、`AGENT_HANDOFF.md` 是先前 benchmark 的交接資料，閱讀時需以此分支實作與上述新文件為準。

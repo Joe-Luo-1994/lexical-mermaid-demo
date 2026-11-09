@@ -1,0 +1,15 @@
+{
+  "name": "editor-evidence-opencode-v2",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./editor-evidence.ts"
+  },
+  "scripts": {
+    "test": "node --test plugin.test.mjs"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.2.5",
+    "effect": "4.0.6"
+  }
+}
