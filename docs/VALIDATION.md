@@ -1,5 +1,7 @@
 # v0.2 驗證紀錄
 
+後續 2026-11-10 Windows 本機、配對實驗與 OpenCode Web 接合狀態見 [WINDOWS-VALIDATION.md](WINDOWS-VALIDATION.md)。以下是原 Linux 驗證的歷史快照，不代表新機已驗證。
+
 ## 已實測
 
 2026-11-09，Linux cloud executor、Node 24.22.1、Chromium 156.0.8078.79、production build。Lexical 0.18.0、React 18.3.1、Mermaid 12.3.0。測試來源為公開合成文件。

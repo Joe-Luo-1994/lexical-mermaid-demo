@@ -1,5 +1,7 @@
 # OpenCode 2.2.5 本機交接
 
+2026-11-10 更新：已在一台 Windows 本機完成 SDK、server active、兩個 Web session 的真實工具呼叫與 ID/CLI 對照；詳見 [本機驗證摘要](WINDOWS-VALIDATION.md)。這不代表新機自動通過或 agent 判讀可靠；下列最初 SDK 紀錄保留為歷史。首次使用可直接從 [agent onboarding](AGENT-START.md) 開始。
+
 **最短可用路徑：** `node scripts/report-query.mjs <recording.json>`。CLI 無第三方依賴；OpenCode 可以透過既有終端工具執行，不必先安裝 plugin。
 
 工作台按「錄製這次操作」會完成準備、暖機與注入。完成後按 **JSON** 下載；「複製給 OpenCode」只複製交接文字，不會傳送 JSON 或訊息。重新整理前請先匯出。工作台的「語意 trace」不是此工具接受的 recording，也不是 CPU profile。
@@ -28,7 +30,7 @@
 - 使用真實 SDK 的 `Plugin.define`，在模擬 registration host 中註冊並執行工具；schema decode、摘要／事件查詢、錯誤、路徑界線、symlink 與 cleanup 通過。
 - TypeScript strict check 對實際 SDK declarations 通過。
 
-**仍未驗證**完整 OpenCode server 載入／Web 對話呼叫、兩個 session、公司環境與公司 editor。SDK 測試不等於完整 runtime 驗證。整體實測紀錄見 [VALIDATION.md](VALIDATION.md)。
+當時尚未驗證 server／Web／兩個 session；後續 Windows 驗證見上方更新。公司環境與公司 editor 仍未知。SDK 測試不等於完整 runtime 驗證。歷史實測紀錄見 [VALIDATION.md](VALIDATION.md)。
 
 ## CLI 與 agent 交接
 

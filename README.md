@@ -1,12 +1,14 @@
 # Editor Evidence · v0.2
 
+**第一次來？從 [START-HERE.md](START-HERE.md) 開始。** 有可直接貼給 agent 的起始指令、五步體驗、安裝受阻時的零依賴範例，以及公司案例的蒐證入口。
+
 重現一次 Lexical 內容注入，保留事件證據，找出下一個值得做的實驗，再比較結果。這是可操作的診斷原型，使用混合格式工程文件、真實 Lexical nodes 與 5–10 張不同布局的 Mermaid 圖。
 
-**固定版本：Lexical 0.18.0、React 18.3.1、Mermaid 12.3.0。** OpenCode 2.2.5 Web 是交接目標，本機 runtime 整合尚未驗證。公開案例不能證明公司專案的根因。
+**固定版本：Lexical 0.18.0、React 18.3.1、Mermaid 12.3.0。** OpenCode 2.2.5 Web 已有一次本機 Windows 接合驗證，包含兩個獨立 session；新環境仍需重驗，agent 判讀仍需審查。[本機證據摘要](docs/WINDOWS-VALIDATION.md)。公開案例不能證明公司專案的根因。
 
 [驗證紀錄](docs/VALIDATION.md) · [探索決策](docs/EXPLORATION.md) · [手機畫面](docs/assets/findings-mobile.png)
 
-![診斷工作台](docs/assets/findings-desktop.png)
+![配對實驗與可查證差異](docs/assets/experiment-overview.png)
 
 ## 啟動
 
@@ -21,6 +23,12 @@ npm run preview
 開啟 preview 顯示的網址。效能比較使用 production build；`npm run dev` 適合開發與除錯。
 
 ## 第一次使用
+
+想先體驗完整價值，可按 **一鍵驗證差異**：固定 20k／5 圖／節點內生成／輕量記錄，每輪暖機，正常與刻意重複情境各錄 10 次，AB／BA 交錯。保持頁面前景；可在當前操作完成後停止，背景切換也會停止並排除當前配對。其他完整配對與單筆記錄保留。
+
+摘要呈現兩組中位數／範圍、配對差值中位數與方向計數，不將它稱為統計顯著或穩定改善。展開「追到每一筆證據」可回到指定 recording；**下載實驗證據包**會保存每筆原始 recording，用「載入記錄」還原並重新計算。任一筆版本、暖機、文件、viewport 或 tracing 條件不同，就阻止整組彙總，不偷偷剔除不利樣本。證據包最多 10 組／16 MB；單筆 recording 維持 2 MB。CLI／OpenCode 工具仍讀**單筆** recording：在選定記錄按 JSON 匯出即可。
+
+這個對照是公開合成案例的管線驗證；不能證明公司專案的請求多餘。記錄只含證據，不包含完整 editor 重播資料；載入記錄不會重播編輯器內容。
 
 1. 保留「正常流程／在節點內繪圖／約 20k 字元／5 張圖」，按 **錄製這次操作**。同一個按鈕會完成資料準備、暖機、注入與記錄。
 2. 在「觀測與下一步」閱讀實際事件產生的診斷，點證據 ID 展開原始事件。
@@ -63,7 +71,7 @@ npm run test:browser
 
 `test:rules` 驗證診斷／比較邏輯及有界查詢；`validate` 是 headless 文件與 Mermaid 語法檢查，不能替代瀏覽器測試。`test:browser` 使用 Playwright，先提供已安裝的 Chromium（可設定 `BROWSER_PATH`），或在允許下載的環境預先安裝 Playwright Chromium。
 
-最短交接路徑是 `node scripts/report-query.mjs <recording.json>`，不需 plugin。選用的 **OpenCode V2 plugin** 位於 `docs/integrations/`，使用實際 `@opencode/plugin@2.2.5` API，SDK 測試與型別檢查已通過，完整 Web runtime 尚待驗證。啟用時以 `plugins` 設定指向該**目錄**；clone 不會自動載入。CLI 驗證結構與引用，保留的 findings 仍需 agent 查證。完整步驟與文件／原始碼差異見 [OpenCode 交接](docs/OPENCODE.md)。
+最短交接路徑是 `node scripts/report-query.mjs <recording.json>`，不需 plugin。選用的 **OpenCode V2 plugin** 位於 `docs/integrations/`，使用實際 `@opencode/plugin@2.2.5` API。SDK及一次Windows Web接合已有驗證，不能代替新機測試。啟用時以 `plugins` 設定指向該**目錄**；clone 不會自動載入。CLI 驗證結構與引用，保留的 findings 仍需 agent 查證。完整步驟與文件／原始碼差異見 [OpenCode 交接](docs/OPENCODE.md)。
 
 實測狀態必須以當次輸出為準。原 benchmark 的歷史結果不套用到這個 0.18.0 分支；第一版完整瀏覽器驗證及 OpenCode runtime 的狀態分別記錄。
 

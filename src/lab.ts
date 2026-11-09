@@ -442,22 +442,7 @@ export function traceExport(report: EvidenceReport) {
     ],
   };
 }
-export function handoff(report: EvidenceReport) {
-  return [
-    `請調查這次 Lexical 匯入操作。請先區分觀測與推論，再提出一個可否證的實驗。`,
-    `Recording: ${report.id}`,
-    `Lexical ${report.environment.lexical} · Mermaid ${report.environment.mermaid} · ${report.environment.build}`,
-    `完成代理值 ${report.metrics.completionProxyMs.toFixed(1)} ms；繪圖 ${report.metrics.renderCalls} 次 / ${report.metrics.diagramCount} 圖。`,
-    ...report.findings
-      .slice(0, 3)
-      .map(
-        (f) =>
-          `${f.confidence}: ${f.title}\n${f.summary}\n證據：${f.evidenceIds.slice(0, 4).join(", ")}\n下一步：${f.nextExperiment}`,
-      ),
-    `原始資料：請先下載 recording JSON，放進 OpenCode 專案。先執行 node scripts/report-query.mjs <JSON路徑> --limit 3；已啟用 V2 plugin 時也可用 editor-evidence 工具。這段文字不會自動傳送。`,
-    `限制：${report.limitations.join(" ")}`,
-  ].join("\n\n");
-}
+export { handoff } from "./handoff";
 export function connect(instance: LexicalEditor, update: () => void) {
   editor = instance;
   onResult = update;

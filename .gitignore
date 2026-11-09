@@ -4,3 +4,8 @@ results/*.trace.json
 
 results/
 recordings/
+
+# Machine-local runtimes and opt-in OpenCode configuration are not distributable.
+.tools/
+opencode.json
+opencode.jsonc

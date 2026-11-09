@@ -4,14 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "doctor": "node scripts/doctor.mjs",
+    "demo:cli": "node scripts/report-query.mjs docs/evidence/duplicate-recording.json --limit 2",
+    "start": "npm run build && npm run preview",
+    "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview --host 0.0.0.0",
+    "preview": "vite preview --host 127.0.0.1",
     "test": "npm run test:rules && npm run build && npm run test:browser",
     "bench": "node scripts/bench.mjs",
     "validate": "node scripts/validate-fixtures.mjs",
-    "test:rules": "node --test scripts/diagnostics.test.mjs scripts/report-query.test.mjs",
-    "test:browser": "node scripts/verify-evidence.mjs",
+    "test:rules": "node --test scripts/diagnostics.test.mjs scripts/report-query.test.mjs scripts/handoff.test.mjs scripts/experiment.test.mjs",
+    "test:browser": "node scripts/verify-evidence.mjs && node scripts/verify-experiment.mjs",
     "test:legacy": "node scripts/verify.mjs"
   },
   "dependencies": {

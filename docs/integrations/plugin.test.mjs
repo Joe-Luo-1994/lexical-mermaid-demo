@@ -46,9 +46,13 @@ test('tool rejects outside-location files, including symlinks',async()=>{
   let registered;
   try {
     await writeFile(join(outside,'recording.json'),JSON.stringify(report));
-    await symlink(join(outside,'recording.json'),join(directory,'link.json'));
+    // Windows file symlinks require an OS privilege; a directory junction
+    // exercises the same realpath escape boundary without changing OS settings.
+    const linkedFile=process.platform==='win32'?join('linked-directory','recording.json'):'link.json';
+    if(process.platform==='win32') await symlink(outside,join(directory,'linked-directory'),'junction');
+    else await symlink(join(outside,'recording.json'),join(directory,'link.json'));
     const cleanup=await plugin.setup({location:{directory},tool:{transform:async callback=>{callback({add:tool=>{registered=tool;}});return {dispose:async()=>{}};}}});
-    for(const file of [join(outside,'recording.json'),'link.json']) {
+    for(const file of [join(outside,'recording.json'),linkedFile]) {
       const result=await registered.execute({file},{});
       assert.match(JSON.parse(result.content).error,/inside the active/);
     }

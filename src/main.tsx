@@ -29,6 +29,8 @@ import {
   type EvidenceReport,
 } from "./diagnostics";
 import "./style.css";
+import { ExperimentPanel } from './ExperimentPanel';
+import { experimentBundle, parseExperiment, mergeRecordings, type ExperimentPair } from './experiment';
 
 function Icon({
   name,
@@ -94,15 +96,25 @@ function Lab() {
     [selectedEvent, setSelectedEvent] = useState(""),
     [filter, setFilter] = useState("");
   const file = useRef<HTMLInputElement>(null);
+  const [pairs, setPairs] = useState<ExperimentPair[]>([]);
+  const [experimentRunning, setExperimentRunning] = useState(false);
+  const [experimentProgress, setExperimentProgress] = useState(0);
+  const [experimentNote, setExperimentNote] = useState('');
+  const experimentBusy = useRef(false), cancelExperiment = useRef(false);
+  const backgroundInvalid = useRef(false);
+  const pendingReport = useRef<((report: EvidenceReport) => void) | null>(null);
   useEffect(
     () =>
       connect(editor, () => {
         const next = window.bench.reports().at(-1)!;
+        if(experimentBusy.current && backgroundInvalid.current)
+          next.limitations.push('ERROR: 本頁曾進入背景，前景量測條件失效；此筆僅供診斷，不可比較。');
         setReports((old) => [...old, next]);
         setSelected(next.id);
         setSelectedEvent("");
         setBaseline((old) => old || next.id);
-        setBusy(false);
+        if (!experimentBusy.current) setBusy(false);
+        pendingReport.current?.(next);
         setStatus(
           next.limitations.some((x) => x.startsWith("ERROR:"))
             ? "操作失敗，已保留部分證據。"
@@ -162,15 +174,66 @@ function Lab() {
       setStatus(`無法開始：${String(error)}`);
     }
   }
+  async function runExperiment() {
+    if (busy || experimentBusy.current) return;
+    if (document.hidden) { setExperimentNote('請讓本頁保持前景後再開始。'); return; }
+    experimentBusy.current=true; cancelExperiment.current=false;
+    backgroundInvalid.current=false;
+    setBusy(true); setExperimentRunning(true); setPairs([]); setExperimentProgress(0);
+    setExperimentNote('正在你這台電腦量測。可以停止，已完成的配對會保留。');
+    const completed:ExperimentPair[]=[];
+    let progress=0, interrupted=false;
+    const visibility=()=>{ if(document.hidden){interrupted=true;backgroundInvalid.current=true;cancelExperiment.current=true;} };
+    document.addEventListener('visibilitychange',visibility);
+    try {
+      for(let pairIndex=0;pairIndex<10;pairIndex++) {
+        const pair:Partial<ExperimentPair>={};
+        const order:('normal'|'duplicate')[]=pairIndex%2 ? ['duplicate','normal'] : ['normal','duplicate'];
+        for(const arm of order) {
+          if(cancelExperiment.current) break;
+          setStatus(`對照 ${progress+1}/20：${scenarioLabels[arm]}，準備文件與暖機…`);
+          await window.bench.prepare('inline',20000,5,'natural',arm,'light');
+          if(cancelExperiment.current) break;
+          const report=await new Promise<EvidenceReport>((resolve,reject)=>{
+            const timer=window.setTimeout(()=>{pendingReport.current=null;reject(new Error('等待記錄逾時，已停止整組實驗。'));},95000);
+            pendingReport.current=(r)=>{clearTimeout(timer);pendingReport.current=null;resolve(r);};
+            try { window.bench.run(); } catch(error){clearTimeout(timer);pendingReport.current=null;reject(error);}
+          });
+          setExperimentProgress(++progress);
+          if(report.limitations.some(x=>x.startsWith('ERROR:'))) throw new Error('其中一筆操作失敗；保留原始記錄，不繼續量測。');
+          if(interrupted) break;
+          pair[arm]=report;
+          await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
+        }
+        if(pair.normal&&pair.duplicate){completed.push(pair as ExperimentPair);setPairs([...completed]);}
+        if(cancelExperiment.current) break;
+      }
+      setExperimentNote(interrupted ? `本頁曾進入背景，已停止；這筆不納入彙總。保留 ${completed.length} 組完整配對。` :
+        completed.length===10 ? '20 筆量測完成。先看差異，再用每筆事件查證。' : `已停止，保留 ${completed.length} 組完整配對；未配對記錄仍可在左側查看。`);
+    } catch(error){setExperimentNote(`實驗停止：${String(error)}`);}
+    finally {
+      document.removeEventListener('visibilitychange',visibility);
+      experimentBusy.current=false;setExperimentRunning(false);setBusy(false);
+      setStatus('對照量測已結束；請閱讀實驗摘要與原始證據。');
+    }
+  }
   async function importReport(f: File | undefined) {
     if (!f) return;
     try {
-      if (f.size > 2_000_000)
-        throw new Error("JSON 超過 2 MB，請改用原始 trace 工具查看。");
-      const report = parseReport(JSON.parse(await f.text()));
-      setReports((old) =>
-        old.some((r) => r.id === report.id) ? old : [...old, report],
-      );
+      if (f.size > 16_000_000) throw new Error('JSON 超過 16 MB；請分開匯入記錄。');
+      const raw:unknown=JSON.parse(await f.text());
+      if(raw && typeof raw==='object' && 'kind' in raw && raw.kind==='editor-evidence-experiment') {
+        const bundle=parseExperiment(raw);
+        const incoming=bundle.pairs.flatMap(p=>[p.normal,p.duplicate]);
+        const merged=mergeRecordings(reports,incoming);
+        setReports(merged);
+        setPairs(bundle.pairs);setExperimentNote('已載入證據包；差異由原始記錄重新計算，不採用檔案中的結論。');
+        setBaseline(bundle.pairs[0].normal.id);setSelected(bundle.pairs[0].duplicate.id);setSelectedEvent('');
+        setStatus(`已載入 ${bundle.pairs.length} 組配對與 ${incoming.length} 筆原始記錄。`);return;
+      }
+      if(f.size>2_000_000) throw new Error('單筆 recording JSON 超過 2 MB，請改用原始 trace 工具查看。');
+      const report = parseReport(raw);
+      setReports(mergeRecordings(reports,[report]));
       setSelected(report.id);
       setSelectedEvent("");
       setBaseline((old) => old || report.id);
@@ -278,7 +341,7 @@ function Lab() {
             <br />
             Mermaid <b>12.3.0</b>
             <br />
-            OpenCode <b>2.2.5 · 待本機驗證</b>
+            OpenCode <b>2.2.5 · 手動交接</b>
           </p>
           <span className="local-note">
             資料留在本頁，匯出後可交接。
@@ -331,6 +394,10 @@ function Lab() {
               可重現實驗 <small>暖機後的內容注入</small>
             </div>
           </header>
+          <ExperimentPanel pairs={pairs} running={experimentRunning} progress={experimentProgress} note={experimentNote} busy={busy}
+            onStart={()=>void runExperiment()} onStop={()=>{cancelExperiment.current=true;setExperimentNote('已要求停止；目前操作完成後保留證據。');}}
+            onExport={()=>download('editor-evidence-experiment.json',experimentBundle(pairs))}
+            onInspect={(pair,arm)=>{setSelected(pair[arm].id);setBaseline(pair.normal.id);setSelectedEvent('');setTab('summary');document.getElementById('record-result')?.scrollIntoView({behavior:'smooth'});}}/>
           <section
             className="config-card"
             id="record-config"
@@ -483,7 +550,7 @@ function Lab() {
             </section>
           ) : (
             <>
-              <div className="record-title">
+              <div className="record-title" id="record-result">
                 <div>
                   <div className="eyebrow">
                     RECORDING / {reports.indexOf(active) + 1}
@@ -500,6 +567,7 @@ function Lab() {
                           : "已記錄"}
                     </span>
                   </h2>
+                  <small className="report-identity">{active.id}</small>
                 </div>
                 <div className="actions">
                   <button onClick={() => download(`${active.id}.json`, active)}>
@@ -812,7 +880,7 @@ function Lab() {
             <div className="section-title">
               <span className="step">LIVE</span>
               <h2>實際編輯器</h2>
-              <span className="muted">固定視窗 · 可捲動、選取與輸入</span>
+              <span className="muted">最近一次本頁操作 · 載入記錄不會重播內容</span>
             </div>
             <div className="editor-viewport">
               <RichTextPlugin
