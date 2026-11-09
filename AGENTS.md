@@ -14,3 +14,5 @@ Read `START-HERE.md`, then `docs/AGENT-START.md` for the requested track. Read `
 - Finish with local URL, <=5 trial steps, passed/blocked/unverified layers, evidence paths and one falsifiable next experiment. If blocked, complete independent work and leave exact recovery commands; do not claim success.
 
 Company investigation starts with the evidence gates in `docs/COMPANY-CASE.md`, not automatic instrumentation or a root-cause guess.
+
+For UI work, read `DESIGN.md` and preserve the result → event → handoff path. Run the focused UX browser check after building; do not treat design-resource recommendations as verified usability gains.

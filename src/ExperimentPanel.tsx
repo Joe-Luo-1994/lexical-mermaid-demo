@@ -6,7 +6,7 @@ export function ExperimentPanel({pairs,running,progress,note,busy,onStart,onStop
 }) {
   const summary=summarizeExperiment(pairs), stats=summary.stats;
   const ms=(v:number)=>v.toFixed(1);
-  return <section className="experiment-card" aria-label="受控對照實驗">
+  return <section id="experiment-overview" tabIndex={-1} className="experiment-card" aria-label="受控對照實驗">
     <div className="experiment-intro">
       <div><div className="eyebrow">從「好像變慢」到可查證的差異</div>
         <h2>多畫一次，究竟多了多少工作？</h2>
@@ -22,6 +22,9 @@ export function ExperimentPanel({pairs,running,progress,note,busy,onStart,onStop
     {note && <p className="experiment-note" role="status">{note}</p>}
     {pairs.length>0 && !summary.comparable && <div className="comparison-block"><b>保留證據，暫不彙總差異</b><ul>{summary.reasons.map(r=><li key={r}>{r}</li>)}</ul></div>}
     {stats && <>
+      <div className="evidence-headline"><span>已觀測 · 請求差異</span><strong>每組多 {stats.requests.min===stats.requests.max ? stats.requests.min : `${stats.requests.min}–${stats.requests.max}`} 次繪圖請求</strong><p>先查回事件，再解釋時間差。這是刻意重複的公開案例，尚未定位公司專案的觸發來源。</p>
+        <button disabled={busy} onClick={()=>onInspect(pairs[0],'duplicate')}>查看第一組重複流程的證據 →</button>
+      </div>
       <div className="experiment-results">
         <div><span>正常流程 · 完成代理值中位數</span><strong>{ms(stats.normal.median)} <small>ms</small></strong><small>範圍 {ms(stats.normal.min)}–{ms(stats.normal.max)} ms</small></div>
         <div><span>重複流程 · 完成代理值中位數</span><strong>{ms(stats.duplicate.median)} <small>ms</small></strong><small>範圍 {ms(stats.duplicate.min)}–{ms(stats.duplicate.max)} ms</small></div>

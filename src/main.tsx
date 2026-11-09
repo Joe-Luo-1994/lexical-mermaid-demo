@@ -29,6 +29,7 @@ import {
   type EvidenceReport,
 } from "./diagnostics";
 import "./style.css";
+import { GettingStarted } from './GettingStarted';
 import { ExperimentPanel } from './ExperimentPanel';
 import { experimentBundle, parseExperiment, mergeRecordings, type ExperimentPair } from './experiment';
 
@@ -96,6 +97,21 @@ function Lab() {
     [selectedEvent, setSelectedEvent] = useState(""),
     [filter, setFilter] = useState("");
   const file = useRef<HTMLInputElement>(null);
+  const [guideOpen,setGuideOpen] = useState(true);
+  const [handoffOpen,setHandoffOpen] = useState(false);
+  const evidenceOrigin = useRef<HTMLButtonElement | null>(null);
+  const [returnToSummary,setReturnToSummary] = useState(false);
+  const [configOpen,setConfigOpen] = useState(false);
+  function goTo(id:string) {
+    requestAnimationFrame(()=>{
+      const target=document.getElementById(id);
+      target?.scrollIntoView({block:'start'});
+      target?.focus({preventScroll:true});
+    });
+  }
+  function configure() { setConfigOpen(true); goTo('record-config'); }
+  useEffect(()=>{setHandoffOpen(false);setReturnToSummary(false);},[selected]);
+
   const [pairs, setPairs] = useState<ExperimentPair[]>([]);
   const [experimentRunning, setExperimentRunning] = useState(false);
   const [experimentProgress, setExperimentProgress] = useState(0);
@@ -155,6 +171,7 @@ function Lab() {
     ) ?? [];
   const detail = active?.events.find((e) => e.id === selectedEvent);
   async function record() {
+    setGuideOpen(false);
     setBusy(true);
     setStatus("正在準備文件與暖機圖表…這段時間不列入注入量測。");
     try {
@@ -177,6 +194,7 @@ function Lab() {
   async function runExperiment() {
     if (busy || experimentBusy.current) return;
     if (document.hidden) { setExperimentNote('請讓本頁保持前景後再開始。'); return; }
+    setGuideOpen(false);
     experimentBusy.current=true; cancelExperiment.current=false;
     backgroundInvalid.current=false;
     setBusy(true); setExperimentRunning(true); setPairs([]); setExperimentProgress(0);
@@ -226,6 +244,7 @@ function Lab() {
         const bundle=parseExperiment(raw);
         const incoming=bundle.pairs.flatMap(p=>[p.normal,p.duplicate]);
         const merged=mergeRecordings(reports,incoming);
+        setGuideOpen(false);
         setReports(merged);
         setPairs(bundle.pairs);setExperimentNote('已載入證據包；差異由原始記錄重新計算，不採用檔案中的結論。');
         setBaseline(bundle.pairs[0].normal.id);setSelected(bundle.pairs[0].duplicate.id);setSelectedEvent('');
@@ -234,6 +253,7 @@ function Lab() {
       if(f.size>2_000_000) throw new Error('單筆 recording JSON 超過 2 MB，請改用原始 trace 工具查看。');
       const report = parseReport(raw);
       setReports(mergeRecordings(reports,[report]));
+      setGuideOpen(false);
       setSelected(report.id);
       setSelectedEvent("");
       setBaseline((old) => old || report.id);
@@ -257,13 +277,17 @@ function Lab() {
     }
   }
   function showEvidence(id: string) {
+    evidenceOrigin.current=document.activeElement as HTMLButtonElement;
+    setReturnToSummary(true);
     setTab("events");
     setFilter("");
     setSelectedEvent(id);
+    goTo("evidence-inspector");
   }
   const failed = active?.limitations.some((x) => x.startsWith("ERROR:"));
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#workspace">跳到工作區</a>
       <aside className="sidebar">
         <a className="brand" href="#">
           <span className="brand-icon">
@@ -287,14 +311,13 @@ function Lab() {
           onClick={() => {
             setSelected("");
             setTab("summary");
-            document
-              .getElementById("record-config")
-              ?.scrollIntoView({ behavior: "smooth" });
+            configure();
           }}
         >
           <Icon name="plus" />
           新的實驗
         </button>
+        {pairs.length>0 && <button className="pair-nav" onClick={()=>goTo('experiment-overview')}>回到配對摘要 · {pairs.length} 組</button>}
         <div className="run-list">
           {reports.length === 0 ? (
             <div className="sidebar-empty">
@@ -310,7 +333,7 @@ function Lab() {
                 className={`run-item ${selected === r.id ? "active" : ""}`}
                 onClick={() => {
                   setSelected(r.id);
-                  setSelectedEvent("");
+                  setSelectedEvent("");setFilter("");goTo("record-result");
                 }}
               >
                 <span className="run-index">
@@ -350,7 +373,7 @@ function Lab() {
           </span>
         </div>
       </aside>
-      <main>
+      <main id="workspace" tabIndex={-1}>
         <div className="topbar">
           <span>
             工作區 <span className="slash">/</span> 匯入效能調查
@@ -381,7 +404,10 @@ function Lab() {
           </div>
         </div>
         <div className="content">
-          <header className="page-header">
+          <div className="workspace-tools"><span>證據只留在本頁；關閉前請匯出。</span><button aria-expanded={guideOpen} onClick={()=>setGuideOpen(!guideOpen)}>{guideOpen?'收起入門導覽':'開啟入門導覽'}</button></div>
+          {guideOpen && <GettingStarted busy={busy} onImport={()=>file.current?.click()} onDemo={()=>{setGuideOpen(false);goTo('experiment-overview');}} onConfigure={configure}/>}
+
+          <header className={`page-header ${reports.length ? "compact-header" : ""}`}>
             <div>
               <div className="eyebrow">
                 FROM A SLOW MOMENT TO A CLEAR NEXT STEP
@@ -397,10 +423,13 @@ function Lab() {
           <ExperimentPanel pairs={pairs} running={experimentRunning} progress={experimentProgress} note={experimentNote} busy={busy}
             onStart={()=>void runExperiment()} onStop={()=>{cancelExperiment.current=true;setExperimentNote('已要求停止；目前操作完成後保留證據。');}}
             onExport={()=>download('editor-evidence-experiment.json',experimentBundle(pairs))}
-            onInspect={(pair,arm)=>{setSelected(pair[arm].id);setBaseline(pair.normal.id);setSelectedEvent('');setTab('summary');document.getElementById('record-result')?.scrollIntoView({behavior:'smooth'});}}/>
+            onInspect={(pair,arm)=>{setSelected(pair[arm].id);setBaseline(pair.normal.id);setSelectedEvent('');setTab('summary');goTo('record-result');}}/>
+          <details className="custom-recording" open={configOpen} onToggle={e=>setConfigOpen(e.currentTarget.open)}>
+          <summary>自訂實驗 · 情境、文件與量測設定</summary>
           <section
             className="config-card"
             id="record-config"
+            tabIndex={-1}
             aria-label="實驗設定"
           >
             <div className="section-title">
@@ -515,42 +544,20 @@ function Lab() {
               </button>
             </div>
           </section>
+          </details>
           <div className={`status ${busy ? "running" : ""}`} role="status">
             <span className={busy ? "spinner" : "status-dot"} />
             {status}
           </div>
           {!active ? (
-            <section className="welcome">
-              <div className="empty-orbit">
-                <Icon name="layers" />
-              </div>
-              <div className="eyebrow">
-                ONE RECORDING. A SHARED UNDERSTANDING.
-              </div>
-              <h2>先留下現場，再縮小問題。</h2>
-              <p>
-                從正常流程開始，接著切換重複繪圖案例。
-                <br />
-                比較同一份文件，觀察請求次數與完成時間如何改變。
-              </p>
-              <div className="welcome-steps">
-                <span>
-                  <b>1</b>重現操作
-                </span>
-                <Icon name="arrow" />
-                <span>
-                  <b>2</b>查看證據
-                </span>
-                <Icon name="arrow" />
-                <span>
-                  <b>3</b>驗證改變
-                </span>
-              </div>
-              <small>診斷依據實際事件產生，不以案例名稱猜答案。</small>
-            </section>
+            <p className="empty-workspace">錄製或載入後，這裡會顯示觀測、事件證據與下一個可驗證的實驗。</p>
           ) : (
             <>
-              <div className="record-title" id="record-result">
+              {pairs.some(p=>p.normal.id===active.id||p.duplicate.id===active.id) && <div className="record-context">
+                <span>配對 {pairs.findIndex(p=>p.normal.id===active.id||p.duplicate.id===active.id)+1} · {pairs.some(p=>p.normal.id===active.id)?'正常 A':'重複 B'}</span>
+                <button onClick={()=>goTo('experiment-overview')}>← 返回配對摘要</button>
+              </div>}
+              <div className="record-title" id="record-result" tabIndex={-1}>
                 <div>
                   <div className="eyebrow">
                     RECORDING / {reports.indexOf(active) + 1}
@@ -570,6 +577,7 @@ function Lab() {
                   <small className="report-identity">{active.id}</small>
                 </div>
                 <div className="actions">
+                  <button aria-expanded={handoffOpen} onClick={()=>setHandoffOpen(!handoffOpen)}>交接指南</button>
                   <button onClick={() => download(`${active.id}.json`, active)}>
                     <Icon name="download" />
                     JSON
@@ -586,6 +594,14 @@ function Lab() {
                   </button>
                 </div>
               </div>
+              {handoffOpen && <section className="handoff-guide" aria-label="交接指南">
+                <h3>把同一份證據交給 agent</h3>
+                <ol><li>按 <b>JSON</b> 保存目前這筆 recording，放到實驗專案的 <code>recordings/</code>。</li>
+                <li>按 <b>複製給 OpenCode</b>，在本機對話貼上交接文字；其他 agent 也可使用其中的 CLI 指令。</li>
+                <li>核對回覆引用的 report ID 與事件 ID，要求列出未知與一個可否證的下一步實驗。</li></ol>
+                <p>目前 report：<code>{active.id}</code></p>
+                <p>實驗證據包保留整組比較；agent CLI 讀取的是單筆 JSON。複製不會傳送訊息。本機 server 不代表模型離線；公司資料需先確認授權。</p>
+              </section>}
               <div className="metrics">
                 <div className="metric">
                   <span>完成代理值</span>
@@ -638,6 +654,20 @@ function Lab() {
                     <button
                       key={key}
                       role="tab"
+                      id={`tab-${key}`}
+                      aria-controls="record-panel"
+                      tabIndex={tab===key?0:-1}
+                      onKeyDown={e=>{
+                        const keys=['summary','events','compare'] as const;
+                        let index=keys.indexOf(key);
+                        if(e.key==='ArrowRight') index=(index+1)%3;
+                        else if(e.key==='ArrowLeft') index=(index+2)%3;
+                        else if(e.key==='Home') index=0;
+                        else if(e.key==='End') index=2;
+                        else return;
+                        e.preventDefault();setTab(keys[index]);
+                        document.getElementById(`tab-${keys[index]}`)?.focus();
+                      }}
                       aria-selected={tab === key}
                       className={tab === key ? "selected" : ""}
                       onClick={() => setTab(key)}
@@ -646,6 +676,7 @@ function Lab() {
                     </button>
                   ))}
                 </div>
+                <div id="record-panel" role="tabpanel" aria-labelledby={`tab-${tab}`}>
                 {tab === "summary" && (
                   <div className="findings">
                     {active.findings.length ? (
@@ -668,6 +699,7 @@ function Lab() {
                               {f.evidenceIds.slice(0, 4).map((id) => (
                                 <button
                                   key={id}
+                                  id={`evidence-link-${f.id}-${id}`}
                                   onClick={() => showEvidence(id)}
                                 >
                                   {short(id)} ↗
@@ -696,6 +728,11 @@ function Lab() {
                 )}
                 {tab === "events" && (
                   <div className="events-view">
+                    {returnToSummary && <button className="back-to-finding" onClick={()=>{
+                      setTab('summary');setReturnToSummary(false);
+                      const id=evidenceOrigin.current?.id;
+                      requestAnimationFrame(()=>id && document.getElementById(id)?.focus());
+                    }}>← 返回觀測與下一步</button>}
                     <div className="event-toolbar">
                       <label className="search">
                         搜尋事件
@@ -714,7 +751,7 @@ function Lab() {
                             <button
                               key={e.id}
                               className={`event-row ${e.id === selectedEvent ? "selected" : ""}`}
-                              onClick={() => setSelectedEvent(e.id)}
+                              onClick={() => {setSelectedEvent(e.id);goTo("evidence-inspector");}}
                             >
                               <span
                                 className={`event-kind ${e.kind === "longtask" ? "amber" : ""}`}
@@ -743,7 +780,7 @@ function Lab() {
                           <p className="empty-inline">沒有符合條件的事件。</p>
                         )}
                       </div>
-                      <aside className="event-detail">
+                      <aside className="event-detail" id="evidence-inspector" tabIndex={-1} aria-label="事件詳細證據">
                         {detail ? (
                           <>
                             <span className="eyebrow">
@@ -855,6 +892,7 @@ function Lab() {
                     )}
                   </div>
                 )}
+              </div>
               </section>
               <details className="limitations">
                 <summary>如何解讀這份記錄 · 量測界線與環境</summary>

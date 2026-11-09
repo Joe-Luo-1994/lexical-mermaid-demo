@@ -8,7 +8,9 @@
 
 [驗證紀錄](docs/VALIDATION.md) · [探索決策](docs/EXPLORATION.md) · [手機畫面](docs/assets/findings-mobile.png)
 
-![配對實驗與可查證差異](docs/assets/experiment-overview.png)
+![首次使用的雙入口導覽](docs/assets/onboarding-workspace.png)
+
+新版介面提供公開案例／載入記錄雙入口、按需展開的自訂設定、配對摘要與事件返回路徑、鍵盤分頁，以及逐步交接指南。[設計規範](DESIGN.md) · [本輪 UX 驗證](docs/UX-VALIDATION.md)。
 
 ## 啟動
 

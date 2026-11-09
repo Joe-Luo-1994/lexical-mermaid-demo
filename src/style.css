@@ -1271,3 +1271,64 @@ footer {
   .experiment-results > div { padding: 12px; }
   .experiment-progress { flex-direction: column; align-items: stretch; }
 }
+
+/* Evidence workspace: see DESIGN.md for the adopted product rules. */
+:root { --muted: #52665b; --focus: #176649; --surface: #fff; --ink: #243c35; font-size: 15px; }
+button { min-height: 40px; font-size: 13px; }
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible,
+[tabindex="-1"]:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.skip-link { position: fixed; top: -80px; left: 16px; z-index: 10; padding: 14px; background: white; color: var(--ink); }
+.skip-link:focus { top: 12px; }
+.workspace-tools, .start-foot { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; color:var(--muted); font-size:13px; }
+.start-guide { background: var(--surface); border:1px solid var(--line); border-radius:12px; padding:24px; margin-bottom:24px; }
+.start-heading h2 { margin:8px 0 20px; font-size:24px; line-height:1.5; }
+.start-options { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.start-options article { display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+.start-options article+article { border-left:1px solid var(--line); padding-left:24px; }
+.start-options h3 { font-size:19px; }
+.start-options p { color:var(--muted); font-size:14px; }
+.start-options button { margin-top:auto; }
+.start-options small, .route-number { font-size:12px; color:var(--muted); line-height:1.6; }
+.start-foot { margin:24px 0 0; padding-top:16px; border-top:1px solid var(--line); }
+.custom-recording { margin: 0 0 20px; }
+.custom-recording > summary { padding:16px 0; cursor:pointer; font-weight:600; }
+.custom-recording .config-card { margin:8px 0; }
+.compact-header { padding-bottom:16px; margin-bottom:16px; }
+.compact-header h1 { font-size:26px; }
+.compact-header .experiment-stamp { display:none; }
+.pair-nav { width:100%; margin:12px 0; }
+.evidence-headline { margin-top:24px; border-top:1px solid #cddccd; padding-top:20px; display:grid; gap:10px; justify-items:start; }
+.evidence-headline > span { color:var(--muted); font-size:13px; }
+.evidence-headline strong { font-size:25px; line-height:1.4; }
+.evidence-headline p { font-size:14px; color:var(--muted); }
+.handoff-guide { border:1px solid #cddccd; background:#eef3ec; padding:22px; border-radius:8px; margin:16px 0; }
+.handoff-guide li { margin:12px 0; line-height:1.7; }
+.handoff-guide p { font-size:13px; overflow-wrap:anywhere; }
+.handoff-guide code { font-size:12px; }
+.back-to-finding { margin:16px 20px 0; }
+.event-detail { scroll-margin-top:24px; }
+.event-detail pre { max-height:360px; overflow:auto; }
+.eyebrow, .metric > small, .event-detail p, .event-toolbar > span, .experiment-caveat,
+.report-identity, .experiment-results span, .experiment-results small, .local-note,
+.run-name small, .run-time small, .confidence, .muted, .tag { font-size:12px; }
+.metric > small, .event-detail p, .event-toolbar > span, .limitations, .muted { color:var(--muted); }
+.evidence-links button { min-height:40px; min-width:44px; font-size:13px; }
+.event-name small, .event-duration small { font-size:12px; }
+.tabbar { flex-wrap:wrap; }
+.tabbar button { min-height:44px; font-size:13px; }
+.actions { flex-wrap:wrap; }
+@media(max-width:760px) {
+  .start-guide { padding:18px; }
+  .start-options { grid-template-columns:1fr; gap:22px; }
+  .start-options article+article { border-left:0; border-top:1px solid var(--line); padding:20px 0 0; }
+  .workspace-tools, .start-foot { align-items:flex-start; flex-direction:column; gap:10px; }
+  .start-heading h2 { font-size:21px; }
+  .evidence-headline strong { font-size:22px; }
+  .tabbar button { flex:1 1 auto; }
+  button { min-height:44px; }
+  .experiment-pairs td, .experiment-pairs th { padding:6px 2px; }
+  .experiment-pairs button { padding:4px; }
+}
+
+.empty-workspace { padding:20px 0; color:var(--muted); font-size:14px; }
+.record-context { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin:24px 0 12px; font-size:13px; color:var(--muted); }

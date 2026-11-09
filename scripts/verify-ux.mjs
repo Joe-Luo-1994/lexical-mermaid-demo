@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {openLab} from './browser.mjs';
+
+const lab=await openLab(), {page}=lab;
+const errors=[];
+page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+await mkdir('results/ux',{recursive:true});
+const checks=[];
+try {
+  assert.ok(await page.getByRole('heading',{name:'體驗公開案例',exact:true}).isVisible());
+  assert.ok(await page.getByRole('heading',{name:'載入我的 recording',exact:true}).isVisible());
+  assert.equal(await page.getByRole('button',{name:'錄製這次操作',exact:true}).isVisible(),false);
+  await page.screenshot({path:'results/ux/start-desktop.png',fullPage:true});
+  await page.screenshot({path:'results/ux/start-viewport.png'});
+  await page.getByRole('button',{name:'我要自訂一次重現'}).click();
+  assert.ok(await page.getByRole('button',{name:'錄製這次操作',exact:true}).isVisible());
+  checks.push('Two entry routes; custom recording disclosed on request');
+  await page.getByRole('button',{name:'收起入門導覽'}).click();
+  await page.locator('input[type=file]').setInputFiles('docs/evidence/duplicate-recording.json');
+  const report=JSON.parse(await readFile('docs/evidence/duplicate-recording.json','utf8'));
+  assert.equal(await page.locator('.report-identity').innerText(),report.id);
+  const origin=await page.locator('.evidence-links button').first().getAttribute('id');
+  await page.locator('.evidence-links button').first().click();
+  const event=JSON.parse(await page.locator('.event-detail pre').innerText());
+  assert.ok(report.events.some(e=>e.id===event.id));
+  await page.waitForFunction(()=>document.activeElement?.id==='evidence-inspector');
+  await page.screenshot({path:'results/ux/evidence-desktop.png',fullPage:true});
+  await page.getByRole('button',{name:'← 返回觀測與下一步'}).click();
+  await page.waitForFunction(id=>document.activeElement?.id===id,origin);
+  checks.push('Exact report/event identity; inspector focus; return restores originating evidence button');
+  const summary=page.getByRole('tab',{name:'觀測與下一步',exact:true});
+  await summary.focus();await page.keyboard.press('ArrowRight');
+  assert.equal(await page.getByRole('tab',{name:/事件證據/}).getAttribute('aria-selected'),'true');
+  await page.waitForTimeout(100);
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'tab-events','Tab navigation must retain keyboard focus');
+  await page.keyboard.press('End');
+  assert.equal(await page.getByRole('tab',{name:'比較實驗',exact:true}).getAttribute('aria-selected'),'true');
+  await page.keyboard.press('Home');
+  assert.equal(await summary.getAttribute('aria-selected'),'true');
+  checks.push('Tabs support arrow keys, Home/End and a labelled panel');
+  await page.getByRole('button',{name:'交接指南',exact:true}).click();
+  assert.ok((await page.getByRole('region',{name:'交接指南'}).innerText()).includes(report.id));
+  const downloaded=page.waitForEvent('download');
+  await page.getByRole('button',{name:'JSON',exact:true}).click();
+  await (await downloaded).saveAs('results/ux/export.json');
+  assert.equal(JSON.parse(await readFile('results/ux/export.json','utf8')).id,report.id);
+  checks.push('Handoff explains single recording vs bundle; JSON retains selected report ID');
+  for(const width of [390,640,1280]) {
+    await page.setViewportSize({width,height:900});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`Overflow at ${width}`);
+  }
+  await page.setViewportSize({width:390,height:844});
+  await page.getByRole('tab',{name:/事件證據/}).click();
+  await page.locator('.event-row').first().click();
+  await page.screenshot({path:'results/ux/evidence-mobile.png',fullPage:true});
+  await page.emulateMedia({reducedMotion:'reduce'});
+  assert.equal(await page.locator('button').first().evaluate(el=>getComputedStyle(el).transitionDuration),'0s');
+  checks.push('390/640/1280 CSS px reflow; reduced-motion removes transitions');
+  assert.deepEqual([...lab.errors,...errors],[]);
+  checks.push('No page or console errors');
+  await writeFile('results/ux/checks.json',JSON.stringify({checks,errors:[...lab.errors,...errors],browser:await lab.browser.version(),node:process.version},null,2));
+  console.log(JSON.stringify({passed:checks.length,checks},null,2));
+} finally {await lab.close();}

@@ -14,8 +14,9 @@
     "bench": "node scripts/bench.mjs",
     "validate": "node scripts/validate-fixtures.mjs",
     "test:rules": "node --test scripts/diagnostics.test.mjs scripts/report-query.test.mjs scripts/handoff.test.mjs scripts/experiment.test.mjs",
-    "test:browser": "node scripts/verify-evidence.mjs && node scripts/verify-experiment.mjs",
-    "test:legacy": "node scripts/verify.mjs"
+    "test:browser": "node scripts/verify-evidence.mjs && node scripts/verify-experiment.mjs && npm run test:ux",
+    "test:legacy": "node scripts/verify.mjs",
+    "test:ux": "node scripts/verify-ux.mjs"
   },
   "dependencies": {
     "@lexical/code": "0.18.0",
