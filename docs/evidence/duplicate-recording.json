@@ -1,0 +1,463 @@
+{
+  "schemaVersion": 1,
+  "id": "run-bdcada32-e342-42ad-8ab5-c15452320751-2",
+  "environment": {
+    "lexical": "0.18.0",
+    "react": "18.3.1",
+    "mermaid": "12.3.0",
+    "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "viewport": "1280x1100@1",
+    "build": "production:368dd2854fe8"
+  },
+  "configuration": {
+    "mode": "inline",
+    "scenario": "duplicate",
+    "size": 20000,
+    "count": 5,
+    "sizing": "natural",
+    "warmup": "all-diagrams-once-before-each-run",
+    "recording": "light",
+    "fixtureHash": "11920dcb3ed11e71b5e41497282dba6afde46a060f2ebbb0715af9ac07366255"
+  },
+  "metrics": {
+    "completionProxyMs": 1502.9000000003725,
+    "commitMs": 45.40000000037253,
+    "renderCalls": 10,
+    "diagramCount": 5,
+    "maxLongTaskMs": 204,
+    "longTaskSupported": true
+  },
+  "events": [
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e24",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 0,
+      "duration": 55.30000000074506
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e1",
+      "kind": "operation",
+      "label": "注入已準備的 EditorState",
+      "owner": "Import",
+      "start": 0.19999999925494194
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e2",
+      "kind": "decorator-commit",
+      "label": "Mermaid decorator commit",
+      "owner": "MermaidView",
+      "start": 28.699999999254942,
+      "diagramId": "architecture"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e3",
+      "kind": "decorator-commit",
+      "label": "Mermaid decorator commit",
+      "owner": "MermaidView",
+      "start": 28.699999999254942,
+      "diagramId": "sequence"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e4",
+      "kind": "decorator-commit",
+      "label": "Mermaid decorator commit",
+      "owner": "MermaidView",
+      "start": 28.699999999254942,
+      "diagramId": "state"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e5",
+      "kind": "decorator-commit",
+      "label": "Mermaid decorator commit",
+      "owner": "MermaidView",
+      "start": 28.699999999254942,
+      "diagramId": "schema"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e6",
+      "kind": "decorator-commit",
+      "label": "Mermaid decorator commit",
+      "owner": "MermaidView",
+      "start": 28.699999999254942,
+      "diagramId": "classes"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e7",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 28.800000000745058,
+      "diagramId": "architecture",
+      "data": {
+        "attempt": 1,
+        "sourceChars": 453
+      },
+      "duration": 211.09999999962747
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e8",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 44.80000000074506,
+      "diagramId": "sequence",
+      "data": {
+        "attempt": 1,
+        "sourceChars": 777
+      },
+      "duration": 280.5
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e9",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 44.90000000037253,
+      "diagramId": "state",
+      "data": {
+        "attempt": 1,
+        "sourceChars": 531
+      },
+      "duration": 438
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e10",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 44.90000000037253,
+      "diagramId": "schema",
+      "data": {
+        "attempt": 1,
+        "sourceChars": 631
+      },
+      "duration": 639.2999999988824
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e11",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 44.90000000037253,
+      "diagramId": "classes",
+      "data": {
+        "attempt": 1,
+        "sourceChars": 699
+      },
+      "duration": 739.0999999996275
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e12",
+      "kind": "lexical-update",
+      "label": "Lexical commit",
+      "owner": "Lexical",
+      "start": 45.40000000037253,
+      "data": {
+        "tags": [
+          "benchmark-inject"
+        ],
+        "dirtyElements": 1,
+        "dirtyLeaves": 0
+      }
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e25",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 58.69999999925494,
+      "duration": 52
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e26",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 154.59999999962747,
+      "duration": 204
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e13",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 241,
+      "diagramId": "architecture",
+      "data": {
+        "attempt": 2,
+        "sourceChars": 453
+      },
+      "duration": 696
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e14",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 326.5,
+      "diagramId": "sequence",
+      "data": {
+        "attempt": 2,
+        "sourceChars": 777
+      },
+      "duration": 687.4000000003725
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e27",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 429.90000000037253,
+      "duration": 58
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e15",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 483.80000000074506,
+      "diagramId": "state",
+      "data": {
+        "attempt": 2,
+        "sourceChars": 531
+      },
+      "duration": 681
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e28",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 491.40000000037253,
+      "duration": 87
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e29",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 594.1999999992549,
+      "duration": 99
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e16",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 686,
+      "diagramId": "schema",
+      "data": {
+        "attempt": 2,
+        "sourceChars": 631
+      },
+      "duration": 710.0999999996275
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e17",
+      "kind": "mermaid-request",
+      "label": "Mermaid render 請求（含排隊）",
+      "owner": "Mermaid",
+      "start": 785.0999999996275,
+      "diagramId": "classes",
+      "data": {
+        "attempt": 2,
+        "sourceChars": 699
+      },
+      "duration": 709.2000000011176
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e30",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 794.1999999992549,
+      "duration": 55
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e31",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 882.4000000003725,
+      "duration": 158
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e18",
+      "kind": "svg-insert",
+      "label": "圖表呈現插入",
+      "owner": "MermaidView",
+      "start": 937.6999999992549,
+      "diagramId": "architecture"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e19",
+      "kind": "svg-insert",
+      "label": "圖表呈現插入",
+      "owner": "MermaidView",
+      "start": 1014.8000000007451,
+      "diagramId": "sequence"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e32",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 1110.9000000003725,
+      "duration": 64
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e20",
+      "kind": "svg-insert",
+      "label": "圖表呈現插入",
+      "owner": "MermaidView",
+      "start": 1168.0999999996275,
+      "diagramId": "state"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e33",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 1181.4000000003725,
+      "duration": 101
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e34",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 1296.9000000003725,
+      "duration": 107
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e21",
+      "kind": "svg-insert",
+      "label": "圖表呈現插入",
+      "owner": "MermaidView",
+      "start": 1397.699999999255,
+      "diagramId": "schema"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e35",
+      "kind": "longtask",
+      "label": "瀏覽器 Long Task",
+      "owner": "Browser",
+      "start": 1408,
+      "duration": 51
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e22",
+      "kind": "svg-insert",
+      "label": "圖表呈現插入",
+      "owner": "MermaidView",
+      "start": 1495.300000000745,
+      "diagramId": "classes"
+    },
+    {
+      "id": "bdcada32-e342-42ad-8ab5-c15452320751:2:e23",
+      "kind": "completion",
+      "label": "全部圖表插入後兩次 rAF",
+      "owner": "Browser",
+      "start": 1503
+    }
+  ],
+  "diagrams": [
+    {
+      "id": "architecture",
+      "title": "匯入服務架構",
+      "kind": "Flowchart · LR",
+      "sourceChars": 453,
+      "requested": 28.800000000745058,
+      "resolved": 937,
+      "inserted": 937.6999999992549
+    },
+    {
+      "id": "sequence",
+      "title": "非同步匯入與重試",
+      "kind": "Sequence",
+      "sourceChars": 777,
+      "requested": 44.80000000074506,
+      "resolved": 1013.9000000003725,
+      "inserted": 1014.8000000007451
+    },
+    {
+      "id": "state",
+      "title": "工作狀態與失敗復原",
+      "kind": "State machine",
+      "sourceChars": 531,
+      "requested": 44.80000000074506,
+      "resolved": 1164.800000000745,
+      "inserted": 1168.0999999996275
+    },
+    {
+      "id": "schema",
+      "title": "版本與工作資料模型",
+      "kind": "ER diagram",
+      "sourceChars": 631,
+      "requested": 44.90000000037253,
+      "resolved": 1396.0999999996275,
+      "inserted": 1397.699999999255
+    },
+    {
+      "id": "classes",
+      "title": "渲染介面與責任分配",
+      "kind": "Class diagram",
+      "sourceChars": 699,
+      "requested": 44.90000000037253,
+      "resolved": 1494.300000000745,
+      "inserted": 1495.300000000745
+    }
+  ],
+  "limitations": [
+    "公開合成案例；不能據此判定公司專案根因。",
+    "每次先暖機所有圖表；不含 Markdown 解析、套件首次載入與暖機成本。",
+    "完成代理值是全部圖表插入後兩次 rAF；不是實際 paint 或可互動時間。",
+    "Mermaid 請求區間包含排隊與非同步等待；不能相加當成 CPU 成本。",
+    "這是語意事件記錄；CPU、layout 歸因需搭配 Chrome performance trace。",
+    "視窗 1280×1100，DPR 1；硬體負載與瀏覽器設定未完全控制，比較前需人工確認。"
+  ],
+  "findings": [
+    {
+      "id": "repeated-mermaid-requests",
+      "title": "同一張圖有多次生成請求",
+      "confidence": "observed",
+      "summary": "5 張圖出現重複請求：architecture × 2、sequence × 2、state × 2、schema × 2、classes × 2。這證明請求重複，尚不能證明多餘，也不能直接歸因於 React re-render。",
+      "evidenceIds": [
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e7",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e13",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e8",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e14",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e9",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e15",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e10",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e16",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e11",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e17"
+      ],
+      "nextExperiment": "固定圖表 source、設定與尺寸，只改變疑似重複請求的觸發行為；比較請求次數、完成代理值及輸出內容。"
+    },
+    {
+      "id": "main-thread-blocking",
+      "title": "記錄到主執行緒 long task",
+      "confidence": "observed",
+      "summary": "12 個 long task；與操作區間重疊的最長事件為 204.0 ms。時間重疊不能證明由同時出現的 plugin 或圖表造成。",
+      "evidenceIds": [
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e24",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e25",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e26",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e27",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e28",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e29",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e30",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e31",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e32",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e33",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e34",
+        "bdcada32-e342-42ad-8ab5-c15452320751:2:e35"
+      ],
+      "nextExperiment": "在 Chrome performance trace 查看這段時間的 call stack 與 layout；定位實際工作後，再只改變該工作並比較。"
+    }
+  ]
+}
