@@ -47,6 +47,7 @@ try {
   await page.evaluate(() => window.bench.setReporting(true));
   await page.screenshot({ path: "results/empty-desktop.png", fullPage: true });
   // Exercise real controls, not only the test API.
+  await page.getByText("自訂實驗 · 情境、文件與量測設定", {exact:true}).click();
   await page.getByRole("button", { name: "錄製這次操作" }).click();
   await page.waitForFunction(() => window.bench.getResult() !== null, null, {
     timeout: 90000,
