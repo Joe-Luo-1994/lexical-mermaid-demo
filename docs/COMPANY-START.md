@@ -2,6 +2,38 @@
 
 目標：用最少接入工作，把「含 Mermaid 的內容注入很慢」轉成一個能區分原因的實驗。先重現、再量測；公開結果不能證明公司根因。
 
+## 公司只需一個分支
+
+所有入口、工具、實驗與公開證據都由 **`main`** 交付，不需要另拉 PR branch。首次取得可用：
+
+```sh
+git clone --branch main --single-branch https://github.com/Joe-Luo-1994/lexical-mermaid-demo.git
+cd lexical-mermaid-demo
+git rev-parse HEAD
+```
+
+已有 checkout 時，先確認未提交修改再更新 `main`，不要用 reset/clean 覆蓋本機工作。記錄取得的 commit，方便同事對齊證據與程式版本。不同目錄的獨立依賴不代表需要不同分支；只安裝本次要使用的部分。
+
+## 共用起始 prompt
+
+不必看過原始聊天，將這段交給公司允許的 OpenCode 2.2.5／Codex：
+
+```text
+請以這份 repo 的 main 作為唯一遠端來源，讀 AGENTS.md、README.md 與 docs/COMPANY-START.md。
+核心目標是讓我知道如何利用既有資訊，加速定位公司 Lexical editor 注入後的效能問題。
+先不要安裝全部工具或掃描公司專案：
+1. 記錄 checkout SHA、dirty 狀態，閱讀 docs/RENDERER-VALIDATION.md 與其連結的 summary/experiment。
+2. 用簡短的 Observed/Inferred/Unknown 說明公開結果能支持什麼、還不能支持什麼，引用證據路徑。
+3. 依我已說明的目的選路徑：理解診斷流程走 START-HERE；比較 renderer 走本文件入口 A；
+   調查公司瓶頸走入口 B。若目的仍不明，先展示已有證據與下一個可區分原因的實驗。
+4. 使用已授權的公司專案範圍、資料政策與既有工具；只詢問真正缺少的資訊。
+5. 執行所選路徑必要的準備與驗證，保留原始證據，最後交付一個能支持或推翻假設的下一步。
+沿用本機 OpenCode 2.2.5，不升級來繞過問題；不把公開 renderer 跑分當成公司 editor 改善。
+不要額外拉其他遠端分支，不自動上傳或 push 公司資料。不同證據格式依各自 README 處理。
+```
+
+首次交接應說清楚三件事：**已經知道什麼、這次要消除哪個未知、用哪份證據驗證。** 若已有公司重現與足夠證據，可以直接走入口 B，不必先重跑所有公開 benchmark。
+
 ## 已知背景
 
 - 公司 Lexical 為 **0.18.0**；React、Mermaid 實際版本要查公司 lockfile 與 runtime。
@@ -49,7 +81,7 @@
 
 ## 公司前的準備
 
-固定本次 commit 或 PR branch，避免拉到尚未包含實驗的 main。根目錄與 renderer 實驗有不同 lockfile：只做 renderer 篩選時不需安裝根目錄依賴或 OpenCode plugin。
+取得最新 `main` 並記錄 commit；不需要拉取實驗分支。根目錄與 renderer 實驗有不同 lockfile：只做 renderer 篩選時不需安裝根目錄依賴或 OpenCode plugin。
 
 在公司允許的連線環境預備實驗目錄的 `npm ci` 依賴及 Playwright Chromium；也可指定已安裝 Chrome/Edge 的 `BROWSER_PATH`。跨 OS 不直接複製 node_modules；依目標 OS/架構準備 cache 或使用核准 registry。`npm ci --offline` 只有 cache 完整時才會成功。
 
