@@ -2,6 +2,8 @@
 
 回答「Pele 是否值得接進 editor」，不把套件跑分當成公司改善。此目錄獨立安裝，主工作台、OpenCode plugin 與 root lockfile 無需改動。
 
+[首輪實測與完整公開證據](../../docs/RENDERER-VALIDATION.md) 已隨 repo 保存；歷史樣本不代表公司電腦上的結果。
+
 ## 啟動與自動比較
 
 Node **24.x**，從本目錄執行：

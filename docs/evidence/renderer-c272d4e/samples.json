@@ -1,0 +1,922 @@
+[
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p1:mermaid",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 0,
+    "engine": "mermaid",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 130.40000000596046,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 32640,
+        "svgElements": 177
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 46.100000001490116,
+        "insertMs": 0.8000000044703484,
+        "svgChars": 42026,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 143.5,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 63927,
+        "svgElements": 191
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 107.90000000596046,
+        "insertMs": 1.5999999940395355,
+        "svgChars": 103378,
+        "svgElements": 682
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 136.60000000149012,
+        "insertMs": 0.8000000044703484,
+        "svgChars": 38520,
+        "svgElements": 267
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 14.399999998509884,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 13819,
+        "svgElements": 73
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 22.399999998509884,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 20445,
+        "svgElements": 187
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 138.20000000298023,
+        "insertMs": 1,
+        "svgChars": 58574,
+        "svgElements": 328
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 139.39999999850988,
+        "insertMs": 1.1999999955296516,
+        "svgChars": 39199,
+        "svgElements": 251
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 35.70000000298023,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 14646,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 914.6000000163913,
+    "insertMs": 7.999999992549419,
+    "settledMs": 927.9000000059605
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p1:pele",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 0,
+    "engine": "pele",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 3.399999998509884,
+        "insertMs": 0.4000000059604645,
+        "svgChars": 9267,
+        "svgElements": 99
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 0.8999999985098839,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 14705,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 1.4000000059604645,
+        "insertMs": 0.5,
+        "svgChars": 9715,
+        "svgElements": 123
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 1.5999999940395355,
+        "insertMs": 1.5,
+        "svgChars": 13230,
+        "svgElements": 173
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 3.5,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 6784,
+        "svgElements": 76
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 0.4000000059604645,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 4839,
+        "svgElements": 53
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.5,
+        "svgChars": 9710,
+        "svgElements": 139
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 0.29999999701976776,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 7093,
+        "svgElements": 76
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 2.7000000029802322,
+        "insertMs": 0.7999999970197678,
+        "svgChars": 12323,
+        "svgElements": 142
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 0.6000000014901161,
+        "insertMs": 0.19999999552965164,
+        "svgChars": 7371,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 15.200000002980232,
+    "insertMs": 5.799999989569187,
+    "settledMs": 49.899999998509884
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p2:pele",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 1,
+    "engine": "pele",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 3.0999999940395355,
+        "insertMs": 0.20000000298023224,
+        "svgChars": 9267,
+        "svgElements": 99
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 0.6000000014901161,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 14705,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 0.8999999985098839,
+        "insertMs": 0.5,
+        "svgChars": 9715,
+        "svgElements": 123
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 0.6000000014901161,
+        "insertMs": 0.5,
+        "svgChars": 13230,
+        "svgElements": 173
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 0.5,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 6784,
+        "svgElements": 76
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 0.30000000447034836,
+        "insertMs": 0.19999999552965164,
+        "svgChars": 4839,
+        "svgElements": 53
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 0.20000000298023224,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 9710,
+        "svgElements": 139
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 0.19999999552965164,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 7093,
+        "svgElements": 76
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 2.399999998509884,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 12323,
+        "svgElements": 142
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.4000000059604645,
+        "svgChars": 7371,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 9.199999995529652,
+    "insertMs": 3.8000000044703484,
+    "settledMs": 33.29999999701977
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p2:mermaid",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 1,
+    "engine": "mermaid",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 95.79999999701977,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 32640,
+        "svgElements": 177
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 39.100000001490116,
+        "insertMs": 1.0999999940395355,
+        "svgChars": 42035,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 201.30000000447035,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 63927,
+        "svgElements": 191
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 109.90000000596046,
+        "insertMs": 1.5,
+        "svgChars": 103399,
+        "svgElements": 682
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 158.89999999850988,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 38528,
+        "svgElements": 267
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 15.5,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 13819,
+        "svgElements": 73
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 24.5,
+        "insertMs": 1.0999999940395355,
+        "svgChars": 20445,
+        "svgElements": 187
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 131.60000000149012,
+        "insertMs": 0.8000000044703484,
+        "svgChars": 58574,
+        "svgElements": 328
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 119,
+        "insertMs": 0.8999999985098839,
+        "svgChars": 39199,
+        "svgElements": 251
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 33.69999999552965,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 14646,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 929.3000000044703,
+    "insertMs": 8,
+    "settledMs": 940.8999999985099
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p3:mermaid",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 2,
+    "engine": "mermaid",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 101.39999999850988,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 32640,
+        "svgElements": 177
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 41.29999999701977,
+        "insertMs": 0.8999999985098839,
+        "svgChars": 42035,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 135.70000000298023,
+        "insertMs": 0.8999999985098839,
+        "svgChars": 63927,
+        "svgElements": 191
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 95.70000000298023,
+        "insertMs": 1.2999999970197678,
+        "svgChars": 103386,
+        "svgElements": 682
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 114.70000000298023,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 38512,
+        "svgElements": 267
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 11.300000004470348,
+        "insertMs": 0.5,
+        "svgChars": 13819,
+        "svgElements": 73
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 14.199999995529652,
+        "insertMs": 0.5,
+        "svgChars": 20445,
+        "svgElements": 187
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 102.30000000447035,
+        "insertMs": 1,
+        "svgChars": 58574,
+        "svgElements": 328
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 123.89999999850988,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 39199,
+        "svgElements": 251
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 37.600000001490116,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 14749,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 778.1000000089407,
+    "insertMs": 7.599999986588955,
+    "settledMs": 789.1000000014901
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p3:pele",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 2,
+    "engine": "pele",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 3.7000000029802322,
+        "insertMs": 0.5,
+        "svgChars": 9267,
+        "svgElements": 99
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 14705,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 0.7999999970197678,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 9715,
+        "svgElements": 123
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 0.7999999970197678,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 13230,
+        "svgElements": 173
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 6784,
+        "svgElements": 76
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 0.29999999701976776,
+        "insertMs": 0.19999999552965164,
+        "svgChars": 4839,
+        "svgElements": 53
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 0.20000000298023224,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 9710,
+        "svgElements": 139
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 0.5,
+        "insertMs": 0.8000000044703484,
+        "svgChars": 7093,
+        "svgElements": 76
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 2.100000001490116,
+        "insertMs": 0.5,
+        "svgChars": 12323,
+        "svgElements": 142
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 0.30000000447034836,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 7371,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 9.5,
+    "insertMs": 4.9000000059604645,
+    "settledMs": 33
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p4:pele",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 3,
+    "engine": "pele",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 7,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 9267,
+        "svgElements": 99
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 0.5,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 14705,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 0.8999999985098839,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 9715,
+        "svgElements": 123
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 0.7000000029802322,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 13230,
+        "svgElements": 173
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 6784,
+        "svgElements": 76
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.8000000044703484,
+        "svgChars": 4839,
+        "svgElements": 53
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 0.29999999701976776,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 9710,
+        "svgElements": 139
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 0.30000000447034836,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 7093,
+        "svgElements": 76
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 1.2000000029802322,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 12323,
+        "svgElements": 142
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 7371,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 12.100000001490116,
+    "insertMs": 4.699999995529652,
+    "settledMs": 33.100000001490116
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p4:mermaid",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 3,
+    "engine": "mermaid",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 100,
+        "insertMs": 0.7999999970197678,
+        "svgChars": 32774,
+        "svgElements": 177
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 39.600000001490116,
+        "insertMs": 1.2000000029802322,
+        "svgChars": 42150,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 138,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 64057,
+        "svgElements": 191
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 103.80000000447035,
+        "insertMs": 1.1999999955296516,
+        "svgChars": 103453,
+        "svgElements": 682
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 116.5,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 38655,
+        "svgElements": 267
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 12.699999995529652,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 13957,
+        "svgElements": 73
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 13.799999997019768,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 20524,
+        "svgElements": 187
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 110.5,
+        "insertMs": 0.7999999970197678,
+        "svgChars": 58951,
+        "svgElements": 328
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 118.90000000596046,
+        "insertMs": 0.5999999940395355,
+        "svgChars": 39342,
+        "svgElements": 251
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 37.20000000298023,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 14749,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 791.0000000074506,
+    "insertMs": 7.199999995529652,
+    "settledMs": 802
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p5:mermaid",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 4,
+    "engine": "mermaid",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 86.80000000447035,
+        "insertMs": 0.7999999970197678,
+        "svgChars": 32774,
+        "svgElements": 177
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 38.20000000298023,
+        "insertMs": 1,
+        "svgChars": 42150,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 121.69999999552965,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 64057,
+        "svgElements": 191
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 93.29999999701977,
+        "insertMs": 1.3999999985098839,
+        "svgChars": 103495,
+        "svgElements": 682
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 111,
+        "insertMs": 0.8000000044703484,
+        "svgChars": 38648,
+        "svgElements": 267
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 13.299999997019768,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 13957,
+        "svgElements": 73
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 16.100000001490116,
+        "insertMs": 0.5,
+        "svgChars": 20524,
+        "svgElements": 187
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 106,
+        "insertMs": 0.7000000029802322,
+        "svgChars": 58951,
+        "svgElements": 328
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 110.09999999403954,
+        "insertMs": 0.9000000059604645,
+        "svgChars": 39342,
+        "svgElements": 251
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 39.399999998509884,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 14749,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 735.8999999910593,
+    "insertMs": 7.500000007450581,
+    "settledMs": 747
+  },
+  {
+    "id": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p5:pele",
+    "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+    "pair": 4,
+    "engine": "pele",
+    "invalid": [],
+    "diagrams": [
+      {
+        "id": "architecture",
+        "ok": true,
+        "generateMs": 1.7999999970197678,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 9267,
+        "svgElements": 99
+      },
+      {
+        "id": "sequence",
+        "ok": true,
+        "generateMs": 0.30000000447034836,
+        "insertMs": 0.6999999955296516,
+        "svgChars": 14705,
+        "svgElements": 192
+      },
+      {
+        "id": "state",
+        "ok": true,
+        "generateMs": 0.7999999970197678,
+        "insertMs": 0.4000000059604645,
+        "svgChars": 9715,
+        "svgElements": 123
+      },
+      {
+        "id": "schema",
+        "ok": true,
+        "generateMs": 0.5999999940395355,
+        "insertMs": 0.5,
+        "svgChars": 13230,
+        "svgElements": 173
+      },
+      {
+        "id": "classes",
+        "ok": true,
+        "generateMs": 0.6000000014901161,
+        "insertMs": 0.3999999985098839,
+        "svgChars": 6784,
+        "svgElements": 76
+      },
+      {
+        "id": "schedule",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.30000000447034836,
+        "svgChars": 4839,
+        "svgElements": 53
+      },
+      {
+        "id": "journey",
+        "ok": true,
+        "generateMs": 0.3999999985098839,
+        "insertMs": 0.6000000014901161,
+        "svgChars": 9710,
+        "svgElements": 139
+      },
+      {
+        "id": "mindmap",
+        "ok": true,
+        "generateMs": 0.5,
+        "insertMs": 0.5,
+        "svgChars": 7093,
+        "svgElements": 76
+      },
+      {
+        "id": "recovery",
+        "ok": true,
+        "generateMs": 1.7999999970197678,
+        "insertMs": 1.8999999985098839,
+        "svgChars": 12323,
+        "svgElements": 142
+      },
+      {
+        "id": "release",
+        "ok": true,
+        "generateMs": 0.30000000447034836,
+        "insertMs": 0.29999999701976776,
+        "svgChars": 7371,
+        "svgElements": 83
+      }
+    ],
+    "generateMs": 7.499999992549419,
+    "insertMs": 6,
+    "settledMs": 33.29999999701977
+  }
+]
