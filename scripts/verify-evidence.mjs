@@ -143,6 +143,12 @@ try {
       mimeType: "application/json",
       buffer: Buffer.from(JSON.stringify(altered)),
     });
+  // File.text() and the React commit complete after setInputFiles returns.
+  // Wait for this import's identity, not a status left by a previous operation.
+  await page.waitForFunction(
+    (id) => document.querySelector(".report-identity")?.textContent === id,
+    altered.id,
+  );
   await page.getByRole("tab", { name: "比較實驗", exact: true }).click();
   assert.ok(await page.locator(".comparison-block").isVisible());
   assert.equal(await page.getByText("FAKE CLAIM", { exact: true }).count(), 0);
@@ -157,6 +163,9 @@ try {
       mimeType: "application/json",
       buffer: Buffer.from(JSON.stringify(invalid)),
     });
+  await page.waitForFunction(() =>
+    document.querySelector('[role="status"]')?.textContent?.includes("無法載入"),
+  );
   assert.match(await page.getByRole("status").innerText(), /無法載入/);
   // Collect a real browser trace in a separate, explicitly instrumented run.
   const trace = [];

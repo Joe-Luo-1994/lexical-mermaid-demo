@@ -1,0 +1,20 @@
+{
+  "browser": "156.0.8078.79",
+  "node": "v24.22.1",
+  "platform": "linux",
+  "architecture": "x64",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "headless": true,
+  "errors": [],
+  "externalRequests": [],
+  "automatedChecks": [
+    "All selected fixtures produce SVG; paired samples and provenance retained",
+    "Download retains experiment ID; 390/640/1280 px reflow",
+    "Stopped and resize-invalidated runs preserve evidence and block aggregate",
+    "Exact standalone report bytes render with browser offline; OS file association/file:// not tested",
+    "No page/console errors or external HTTP requests"
+  ]
+}

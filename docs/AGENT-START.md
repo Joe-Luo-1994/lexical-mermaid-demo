@@ -20,6 +20,7 @@
 | 檔案 | 做法 |
 |---|---|
 | schemaVersion1 單次recording（有id/events） | `node scripts/report-query.mjs <檔案> --limit 3`；核對reportId，再精確event查詢 |
+| kind=renderer-comparison-summary / renderer-comparison-experiment | 依 `experiments/renderer-comparison/README.md` 讀 summary、experiment 與按 sample ID 查 samples；不是 editor-evidence 輸入 |
 | kind=editor-evidence-experiment 證據包 | 在工作台載入，選一筆再按JSON匯出；CLI目前不直接讀整包 |
 | Chrome trace / 語意trace | 不改檔名假裝recording。用相應trace工具分析，保留不同時間軸與觀測開銷 |
 | 公司editor JSON / Markdown / 任意log | 不代表此原型可直接錄製。改走公司案例證據閘門 |

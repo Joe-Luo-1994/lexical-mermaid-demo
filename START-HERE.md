@@ -2,6 +2,8 @@
 
 **Editor Evidence 幫你把「匯入好像變慢」變成一個有證據、能驗證的下一步。**
 
+公司環境只需拉取 `main`，即可取得工作台、OpenCode 交接與 renderer 實驗。內部人員可先讀 [公司入口的共用起始 prompt](docs/COMPANY-START.md)，由 agent 整理已知、未知與適合的路徑；不用追查各個 PR。
+
 第一個可交付成果不是漂亮的效能數字，而是：你能指出多出的工作，點回原始事件，交給 agent 查同一份資料，再決定下一個實驗。這是公開合成原型，還不是任意公司 editor 的自動錄製器。
 
 ## 有 agent：貼這一句，先讓它把環境跑起來
@@ -61,6 +63,8 @@ node scripts/report-query.mjs docs/evidence/duplicate-recording.json --event bdc
 
 ## 依你的情況繼續
 
+- [到公司後接續：renderer 比較與 editor 接入](docs/COMPANY-START.md)：包含可直接貼給 agent 的任務、內網準備與證據產物。
+- [獨立 Mermaid／Pele 比較](experiments/renderer-comparison/README.md)：獨立依賴、相同圖表、配對量測與離線外觀報告，不影響主工作台。
 - [Agent完整任務與受阻恢復](docs/AGENT-START.md)
 - [開始處理公司案例](docs/COMPANY-CASE.md)：先授權範圍、確認版本與資料可否進模型，再蒐證。
 - [OpenCode選用plugin](docs/OPENCODE.md)：先確認2.2.5，不替換既有版本；模型登入只在本機介面完成。

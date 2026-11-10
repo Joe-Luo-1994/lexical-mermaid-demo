@@ -1,0 +1,16 @@
+{
+  "name": "editor-evidence-renderer-comparison",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "doctor": "node ../../scripts/doctor.mjs --renderer",
+    "build": "node scripts/build.mjs",
+    "start": "npm run build && node scripts/server.mjs",
+    "bench": "npm run build && node scripts/run.mjs",
+    "test": "node --test scripts/results.test.mjs && npm run build && node scripts/run.mjs --verify"
+  },
+  "dependencies": { "mermaid": "12.3.0", "pele": "1.13.0" },
+  "devDependencies": { "esbuild": "0.28.2", "playwright": "1.65.0" }
+}

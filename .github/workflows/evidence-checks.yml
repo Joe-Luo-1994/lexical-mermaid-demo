@@ -4,6 +4,28 @@ on:
   push:
     branches: [main, "feat/editor-*"]
 jobs:
+  renderer-comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: experiments/renderer-comparison
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: experiments/renderer-comparison/package-lock.json
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: renderer-comparison-evidence
+          path: experiments/renderer-comparison/results/
+          retention-days: 7
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15

@@ -1,0 +1,153 @@
+{
+  "kind": "renderer-comparison-summary",
+  "schemaVersion": 1,
+  "experimentId": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90",
+  "status": "measured-visual-review-required",
+  "reasons": [],
+  "samples": [
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p1:mermaid",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p1:pele",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p2:pele",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p2:mermaid",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p3:mermaid",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p3:pele",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p4:pele",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p4:mermaid",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p5:mermaid",
+    "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p5:pele"
+  ],
+  "pairedDifferences": [
+    {
+      "pair": 0,
+      "a": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p1:mermaid",
+      "b": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p1:pele",
+      "delta": {
+        "generateMs": -899.400000013411,
+        "insertMs": -2.2000000029802322,
+        "settledMs": -878.0000000074506
+      }
+    },
+    {
+      "pair": 1,
+      "a": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p2:mermaid",
+      "b": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p2:pele",
+      "delta": {
+        "generateMs": -920.1000000089407,
+        "insertMs": -4.199999995529652,
+        "settledMs": -907.6000000014901
+      }
+    },
+    {
+      "pair": 2,
+      "a": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p3:mermaid",
+      "b": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p3:pele",
+      "delta": {
+        "generateMs": -768.6000000089407,
+        "insertMs": -2.6999999806284904,
+        "settledMs": -756.1000000014901
+      }
+    },
+    {
+      "pair": 3,
+      "a": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p4:mermaid",
+      "b": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p4:pele",
+      "delta": {
+        "generateMs": -778.9000000059605,
+        "insertMs": -2.5,
+        "settledMs": -768.8999999985099
+      }
+    },
+    {
+      "pair": 4,
+      "a": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p5:mermaid",
+      "b": "renderer-af0796d4-25f5-42fd-90d1-59e304ef4a90:p5:pele",
+      "delta": {
+        "generateMs": -728.3999999985099,
+        "insertMs": -1.5000000074505806,
+        "settledMs": -713.7000000029802
+      }
+    }
+  ],
+  "timing": {
+    "generateMs": {
+      "mermaid": {
+        "n": 5,
+        "median": 791.0000000074506,
+        "min": 735.8999999910593,
+        "max": 929.3000000044703
+      },
+      "pele": {
+        "n": 5,
+        "median": 9.5,
+        "min": 7.499999992549419,
+        "max": 15.200000002980232
+      },
+      "peleMinusMermaid": {
+        "n": 5,
+        "median": -778.9000000059605,
+        "min": -920.1000000089407,
+        "max": -728.3999999985099
+      },
+      "peleLower": 5
+    },
+    "insertMs": {
+      "mermaid": {
+        "n": 5,
+        "median": 7.599999986588955,
+        "min": 7.199999995529652,
+        "max": 8
+      },
+      "pele": {
+        "n": 5,
+        "median": 4.9000000059604645,
+        "min": 3.8000000044703484,
+        "max": 6
+      },
+      "peleMinusMermaid": {
+        "n": 5,
+        "median": -2.5,
+        "min": -4.199999995529652,
+        "max": -1.5000000074505806
+      },
+      "peleLower": 5
+    },
+    "settledMs": {
+      "mermaid": {
+        "n": 5,
+        "median": 802,
+        "min": 747,
+        "max": 940.8999999985099
+      },
+      "pele": {
+        "n": 5,
+        "median": 33.29999999701977,
+        "min": 33,
+        "max": 49.899999998509884
+      },
+      "peleMinusMermaid": {
+        "n": 5,
+        "median": -768.8999999985099,
+        "min": -907.6000000014901,
+        "max": -713.7000000029802
+      },
+      "peleLower": 5
+    }
+  },
+  "visualReview": "pending: 需人工確認語意、中文、換行、連線、互動需求；產生 SVG 不等於正確",
+  "nextExperiment": "呈現可接受且生成差異值得追查時，在 Lexical 0.18.0 中固定同一圖，增加周圍文件 20k/50k/80k；只換 renderer。",
+  "evidence": {
+    "manifest": "experiment.json",
+    "samples": "samples.json",
+    "visual": "report.html"
+  },
+  "limitations": [
+    "公開合成 renderer 篩選；未執行 Lexical、Markdown 轉換或公司 editor",
+    "generateMs 為呼叫至回傳，包含 renderer 內部工作/等待；非 CPU 專屬時間",
+    "insertMs 只量 innerHTML；後續 layout/paint 可能延後發生",
+    "settledMs 從開始生成到最後插入後兩次 rAF；非 paint 完成或 TTI",
+    "每筆先暖機；首次載入/首次生成另行實驗，這裡未量測",
+    "不同 layout/輸出 DOM 是 renderer 介入的一部分，需檢查功能等價",
+    "外觀預覽於量測後生成；SVG 經 HTML DOM 解析與 XML 序列化，讓 HTML label 換行可用於圖片",
+    "中位數/範圍為描述性數據，不是統計顯著或公司根因；無 profiler tracing"
+  ]
+}
