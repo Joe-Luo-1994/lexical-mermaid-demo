@@ -1,0 +1,22 @@
+{
+  "kind": "renderer-comparison-plan",
+  "schemaVersion": 1,
+  "question": "Pele 是否值得進入 Lexical editor 的單一變因實驗？",
+  "intervention": "renderer: mermaid → pele",
+  "defaults": { "pairs": 5, "count": 10 },
+  "allowedCounts": [1, 5, 10, 11],
+  "controls": {
+    "warmup": "每筆樣本前，以該 renderer 生成所有選定圖表一次；排除於量測之外",
+    "order": "配對 AB/BA 交替；A=Mermaid，B=Pele",
+    "font": "Arial, sans-serif; 16px; document.fonts.ready",
+    "container": "同一個可見容器，固定當輪寬度，樣本間清空",
+    "completion": "最後 SVG 插入後兩次 requestAnimationFrame；非 paint 或 TTI",
+    "cache": "renderer 原生快取保留；不加結果快取",
+    "tracing": false
+  },
+  "decision": {
+    "continue": "圖表語意與可讀性經人工確認；重複量測有值得追查的差異，再到 editor 驗證",
+    "stop": "關鍵語法或呈現不合適，或生成成本不足以解釋目標問題",
+    "inconclusive": "背景切換、尺寸變動、失敗樣本、未完配對或人工檢查未完成"
+  }
+}

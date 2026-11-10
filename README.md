@@ -2,6 +2,8 @@
 
 **第一次來？從 [START-HERE.md](START-HERE.md) 開始。** 有可直接貼給 agent 的起始指令、五步體驗、安裝受阻時的零依賴範例，以及公司案例的蒐證入口。
 
+**準備到公司接續？** [公司起始 prompt](docs/COMPANY-START.md) 串起環境檢查、[獨立 Mermaid／Pele 比較](experiments/renderer-comparison/README.md) 與 [editor 最小接入契約](docs/EDITOR-INTEGRATION.md)。Renderer 實驗有自己的 lockfile，主工作台與 OpenCode plugin 不需要安裝 Pele；兩種證據格式分開處理。
+
 重現一次 Lexical 內容注入，保留事件證據，找出下一個值得做的實驗，再比較結果。這是可操作的診斷原型，使用混合格式工程文件、真實 Lexical nodes 與 5–10 張不同布局的 Mermaid 圖。
 
 **固定版本：Lexical 0.18.0、React 18.3.1、Mermaid 12.3.0。** OpenCode 2.2.5 Web 已有一次本機 Windows 接合驗證，包含兩個獨立 session；新環境仍需重驗，agent 判讀仍需審查。[本機證據摘要](docs/WINDOWS-VALIDATION.md)。公開案例不能證明公司專案的根因。

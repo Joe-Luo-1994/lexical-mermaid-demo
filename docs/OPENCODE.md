@@ -4,6 +4,8 @@
 
 **最短可用路徑：** `node scripts/report-query.mjs <recording.json>`。CLI 無第三方依賴；OpenCode 可以透過既有終端工具執行，不必先安裝 plugin。
 
+**Mermaid／Pele 獨立實驗：**依 [公司入口](COMPANY-START.md) 及 [renderer README](../experiments/renderer-comparison/README.md) 執行。其 summary/experiment/samples 是另一種格式，使用 OpenCode 既有讀檔工具；不要交給 `editor-evidence`，不需修改 plugin 設定。
+
 工作台按「錄製這次操作」會完成準備、暖機與注入。完成後按 **JSON** 下載；「複製給 OpenCode」只複製交接文字，不會傳送 JSON 或訊息。重新整理前請先匯出。工作台的「語意 trace」不是此工具接受的 recording，也不是 CPU profile。
 
 本分支固定 Lexical **0.18.0**、React **18.3.1**、Mermaid **12.3.0**。公司專案的 React／Mermaid 版本仍需另行確認。

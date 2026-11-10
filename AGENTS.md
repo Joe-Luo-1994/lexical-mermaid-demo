@@ -15,4 +15,6 @@ Read `START-HERE.md`, then `docs/AGENT-START.md` for the requested track. Read `
 
 Company investigation starts with the evidence gates in `docs/COMPANY-CASE.md`, not automatic instrumentation or a root-cause guess.
 
+For renderer experiments, read `docs/COMPANY-START.md` and `experiments/renderer-comparison/README.md`. Install the experiment's independent lockfile only. Its summary/samples are not workbench recordings and must not be passed to `editor-evidence`. Reuse existing authorization; do not ask again for paths/actions already in scope. Company integration guidance is `docs/EDITOR-INTEGRATION.md`.
+
 For UI work, read `DESIGN.md` and preserve the result → event → handoff path. Run the focused UX browser check after building; do not treat design-resource recommendations as verified usability gains.

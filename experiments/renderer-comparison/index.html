@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><link rel="stylesheet" href="/style.css"><title>Renderer Comparison · Editor Evidence</title></head>
+<body>
+<a class="skip" href="#main">跳到實驗</a>
+<header><span class="brand">EDITOR EVIDENCE / EXPERIMENT 01</span><span class="badge">獨立 renderer 篩選</span></header>
+<main id="main">
+<section class="intro"><p class="eyebrow">從套件速度，到下一個值得做的實驗</p><h1>相同圖表，<br>換個方式畫。</h1><p>比較 Mermaid 與 Pele 的生成成本與呈現品質，決定是否值得帶進 Lexical editor。</p><p class="muted">公開合成資料 · 所有資源由本機提供 · 尚未驗證公司瓶頸</p></section>
+<section class="controls" aria-label="實驗設定"><div><label for="count">圖表案例</label><select id="count"><option value="1">1 張 · 架構</option><option value="5">5 張 · 混合類型</option><option value="10" selected>10 張 · 完整案例</option><option value="11">11 張 · 加中文標籤</option></select></div><div><label for="pairs">配對輪數</label><select id="pairs"><option value="3">3 輪 · 初探</option><option value="5" selected>5 輪 · 預設</option><option value="10">10 輪 · 複查</option></select></div><button id="run" disabled>開始比較</button><button id="stop" class="secondary" disabled>完成這筆後停止</button></section>
+<p id="status" role="status" aria-live="polite">正在準備本機 renderer…</p>
+<p class="note">每筆量測前暖機，AB／BA 交替。請保持頁面前景與視窗大小；切到背景或改變尺寸會讓這輪結果無法彙總。停止會保留原始樣本。</p>
+<section id="result" hidden aria-label="實驗結果"><h2 tabindex="-1" id="result-title">先看證據，再決定。</h2><div id="stats" class="stats"></div><p id="interpretation"></p><div class="downloads"><button class="secondary" data-file="summary">下載摘要 JSON</button><button class="secondary" data-file="experiment">下載實驗設定</button><button class="secondary" data-file="samples">下載全部樣本</button><button data-file="report">下載離線報告</button></div><p class="muted">Agent 先讀 summary.json，有疑點再讀 samples.json。這些檔案不是主工作台的 recording。</p><details><summary>量測邊界與原始摘要</summary><pre id="summary"></pre></details></section>
+<details id="measurement" open><summary>實際繪圖區 · 量測時保持展開</summary><p class="muted">兩套 renderer 輪流使用同一容器。這裡沒有 Lexical；生成與插入成本可協助選擇下一步。</p><div id="host"></div></details>
+<section id="visual" hidden><h2>這些圖，你願意交給使用者嗎？</h2><p>左右圖是量測後另外產生。人工檢查內容、中文、換行、箭頭與連線；成功產生 SVG 不代表語意相同。</p><div id="gallery"></div></section>
+<footer><span id="versions"></span><p>完成代理值是插入後兩次 rAF，非 paint 或可互動時間。樣本保留在本頁記憶體，離開前請下載。</p></footer>
+</main><script type="module" src="/app.js"></script></body></html>

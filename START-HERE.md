@@ -61,6 +61,8 @@ node scripts/report-query.mjs docs/evidence/duplicate-recording.json --event bdc
 
 ## 依你的情況繼續
 
+- [到公司後接續：renderer 比較與 editor 接入](docs/COMPANY-START.md)：包含可直接貼給 agent 的任務、內網準備與證據產物。
+- [獨立 Mermaid／Pele 比較](experiments/renderer-comparison/README.md)：獨立依賴、相同圖表、配對量測與離線外觀報告，不影響主工作台。
 - [Agent完整任務與受阻恢復](docs/AGENT-START.md)
 - [開始處理公司案例](docs/COMPANY-CASE.md)：先授權範圍、確認版本與資料可否進模型，再蒐證。
 - [OpenCode選用plugin](docs/OPENCODE.md)：先確認2.2.5，不替換既有版本；模型登入只在本機介面完成。
