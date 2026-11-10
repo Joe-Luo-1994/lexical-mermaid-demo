@@ -42,6 +42,7 @@ HTML 可在 clone 後以瀏覽器開啟；GitHub 檔案頁需下載原檔。自�
 - 外觀對照改成 SVG image，減少嵌套 frame 的捲動/點擊時序問題。量測區仍是原始 SVG DOM 插入。
 - 中文案例含 `<br/>`；Mermaid 回傳可供 HTML 插入的 `<br>`，直接當 XML image 會失敗。只在量測外對預覽做 DOM 解析／XML 序列化；原始繪圖計時與 source 不變。
 - 離線驗證只攔 HTTP，避免錯將本機內容攔下。Chrome tracing 未開啟，沒有把 trace 樣本混入量測。
+- 遠端 CI 的新 renderer job 首次即通過；既有 `verify-evidence.mjs` 暴露非同步匯入測試競態：`setInputFiles()` 後立刻讀到上一筆成功狀態。測試改為等待本次 report ID／錯誤狀態，保留原斷言，不修改產品匯入邏輯。
 
 ## 下一個可否證實驗
 
