@@ -1,5 +1,7 @@
 # 公司 editor 的最小觀測契約
 
+本文件保留既有 renderer 調查的接入參考。新版方向先讀 [Agent Debug 契約](AGENT-DEBUG-CONTRACT.md)：由 agent 依當前問題生成觀測，不要求人逐個 plugin 手動埋點，也不把下方 Mermaid 替換實驗視為所有案例的預設。
+
 這是接入指引，**不是已實作的通用 collector SDK**。原型 `src/lab.ts` 仍是公開 demo 專用，勿直接貼進公司並宣稱完整可用。公司調查範圍沿用 [COMPANY-CASE.md](COMPANY-CASE.md) 與當前 session 授權。
 
 ## 先定位實際程式路徑

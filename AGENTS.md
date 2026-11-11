@@ -2,6 +2,8 @@
 
 This repository is a public, synthetic Lexical diagnostic workbench, not the company editor. Do not use another lab's Markdown-import adoption contract as this product's API.
 
+The new product direction is an agent-driven investigation framework that generates project-specific observations. For framework work, read `docs/AGENT-DEBUG-CONTRACT.md`, `docs/AGENT-DEBUG-ACCEPTANCE.md`, and `docs/AGENT-DEBUG-SPIKE.md` first. The confirmed scope is opening an unseen document in an already-running app, 30 minutes after environment/login readiness, and a 100 ms input/scroll visible-response gate. These are requirements, not implemented enforcement. Do not default framework requests to the Mermaid demo or claim the existing collector is portable. Existing tools remain reference/evaluation assets. Follow current session authorization; merge of a company repair remains a human decision.
+
 Read `START-HERE.md`, then `docs/AGENT-START.md` for the requested track. Read `docs/EXPERIMENT_CONTRACT.md` and `docs/DIAGNOSTIC_RULES.md` before interpreting measurements. `docs/OPENCODE.md` describes the optional integration; CLI works without it.
 
 - Default: public-demo track only. No company filesystem search or upload without explicit scope. Company data stays local; gitignore is not permission to send it to a model provider.
