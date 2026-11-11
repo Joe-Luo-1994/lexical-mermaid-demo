@@ -1,6 +1,6 @@
 # 無需原作者在場的 agent 任務
 
-若任務是新版「依專案生成 debug 能力的框架」，先讀 [需求契約](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md) 與 [第一個實驗](AGENT-DEBUG-SPIKE.md)，不要自動執行下方公開 demo。下方 A/B 適用既有工作台與 recording；新框架的 runner/enforcement 尚未實作。
+若任務是新版「依專案生成 debug 能力的框架」，先讀 [需求契約](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md) 與 [第一個實驗](AGENT-DEBUG-SPIKE.md)，不要自動執行下方公開 demo。新框架已有 [可執行核心與 playbook](../debug-core/AGENT-PLAYBOOK.md)，先核對 [實作與驗證邊界](../debug-core/VALIDATION.md)。下方 A/B 只適用既有工作台與 recording，不能當作新案例工具的接入流程。
 
 ## A：公開案例首次體驗（預設）
 
