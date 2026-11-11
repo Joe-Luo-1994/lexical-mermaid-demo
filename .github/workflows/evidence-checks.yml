@@ -49,5 +49,10 @@ jobs:
         if: always()
         with:
           name: browser-evidence
-          path: results/
+          path: |
+            results/
+            !results/debug-runtime/**/project
+            !results/debug-runtime/**/project/**
+          # Case seals/source snapshots live in .core; target dependency links do not belong in evidence.
+          include-hidden-files: true
           retention-days: 7

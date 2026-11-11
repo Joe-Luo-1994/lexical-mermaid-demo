@@ -39,6 +39,7 @@
 4. baseline 重現移入原期限，透過 runner 留存。
 5. 核心 bytes pinning、metadata/source/log symlink 邊界；摘要與來源導航遇到失效狀態不默認成功。
 6. 無來源時的 live announcement 改成 unresolved；完整限制可展開，必要缺口持續可見。
+7. CI artifact 保留案例的 `.core` seal/來源快照，排除暫時 project（含 node_modules 連結），避免遺失驗證材料與無用上傳。
 
 ## 契約對應與未完成項目
 
