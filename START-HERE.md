@@ -1,5 +1,7 @@
 # 明天第一次打開，就從這裡開始
 
+**新版框架 DX 設計：**[案例流程與迭代](docs/AGENT-DEBUG-DX.md) · [可點擊合成原型／啟動方式](design/agent-debug/README.md)。原型不是公司診斷器；真實證據接合仍待驗證。
+
 **要推進新版 debug 框架？** 從 [已確認契約](docs/AGENT-DEBUG-CONTRACT.md) 與 [第一個可行性實驗](docs/AGENT-DEBUG-SPIKE.md) 開始。下方是既有公開工作台的體驗流程，不是新框架的完整交付或必要前置測試。
 
 **Editor Evidence 幫你把「匯入好像變慢」變成一個有證據、能驗證的下一步。**

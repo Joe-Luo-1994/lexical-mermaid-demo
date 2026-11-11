@@ -1,5 +1,7 @@
 # Editor Evidence · v0.2
 
+**新版框架 DX 設計：**[案例流程與迭代](docs/AGENT-DEBUG-DX.md) · [可點擊合成原型／啟動方式](design/agent-debug/README.md)。原型不是公司診斷器；真實證據接合仍待驗證。
+
 **產品方向已更新：由 agent 為既有專案生成調查能力的 debug 框架。** 先讀 [需求契約 v0.1](docs/AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](docs/AGENT-DEBUG-ACCEPTANCE.md) 與 [第一個可行性實驗](docs/AGENT-DEBUG-SPIKE.md)。需求基線已確認，enforcement/runner/導航接合尚待實作與驗證；下方工作台與 renderer 比較是現有參考工具，不代表新框架已完成。
 
 **第一次來？從 [START-HERE.md](START-HERE.md) 開始。** 有可直接貼給 agent 的起始指令、五步體驗、安裝受阻時的零依賴範例，以及公司案例的蒐證入口。

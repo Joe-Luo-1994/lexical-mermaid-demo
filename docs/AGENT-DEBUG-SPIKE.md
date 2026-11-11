@@ -1,6 +1,6 @@
 # 第一個可行性實驗：從獨立專案到可追查路徑
 
-依據：[契約 v0.1](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md)。狀態：計畫，尚未執行；本文件不是現成 CLI 或已驗證工具。
+依據：[契約 v0.2](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md)。狀態：計畫，尚未執行；本文件不是現成 CLI 或已驗證工具。
 
 ## 要消除的未知
 
@@ -50,3 +50,5 @@ Agent 能否在一個原本沒有本 repo 埋點的 Lexical 0.18.0 專案中，�
 - 停止：到 deadline、無法重現、必要權限/資料/工具缺少、或產物不可信。保留證據，輸出 blocked/inconclusive 與下一個最小驗證；不延伸成 replay、通用 SDK 或大型 UI 開發。
 
 此 spike 通過只支持繼續實作必要 enforcement。之後才執行獨立 session 的自由調查對照與真實案例驗收，不能把一個受控成功案例當成框架已優於現有工具。
+
+DX 的下一實作切片：依 [DX 設計](AGENT-DEBUG-DX.md)，把本實驗的一筆真實 finding 接入案例摘要，驗證同一事件/區間/來源的導航。不要沿用合成原型中的來源快照或時間當證據；原型 browser check 不代替本實驗。

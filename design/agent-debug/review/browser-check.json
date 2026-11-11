@@ -1,0 +1,43 @@
+{
+  "kind": "dx-design-browser-check",
+  "browser": "156.0.8078.79",
+  "url": "http://127.0.0.1:39111",
+  "checks": [
+    "persistent synthetic label",
+    "summary opens same run/event",
+    "same-time event is not causal",
+    "return restores focus",
+    "keyboard navigation preserves selection",
+    "stale preserves historical snapshot with warning",
+    "stale handoff identifies changed revision and affected refs",
+    "missing source does not guess location",
+    "export matches missing-source state",
+    "export retains contrary event and limitations",
+    "deadline is not reset on handoff",
+    "download matches displayed projection",
+    "runtime and cost not fabricated",
+    "narrow overview does not overflow",
+    "narrow evidence does not overflow",
+    "narrow experiment does not overflow",
+    "narrow handoff does not overflow",
+    "no external requests",
+    "no browser errors"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "scope": "synthetic prototype only",
+  "notValidated": [
+    "human usability",
+    "runtime integration",
+    "OpenCode 2.2.5 integration",
+    "100ms response",
+    "real source/trace navigation"
+  ],
+  "checkedAt": "2026-11-11",
+  "sourceSha256": {
+    "design/agent-debug/index.html": "1907619afbeef5235eea6ca60dc6feeb2e657804aec6cf0ccbadcd076189e58c",
+    "design/agent-debug/verify.py": "3892260505cc1701db574575ebfaa46e8fbac6f2afc968cf42fd99c499481a26"
+  },
+  "pythonPlaywrightVersion": "1.62.0",
+  "urlStatus": "ephemeral test server closed after run"
+}

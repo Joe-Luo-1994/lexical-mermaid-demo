@@ -1,4 +1,4 @@
-# Agent Debug v0.1 驗收矩陣
+# Agent Debug v0.2 驗收矩陣
 
 依據：[需求契約](AGENT-DEBUG-CONTRACT.md)。狀態：**驗收設計，尚未執行。** 舊 demo CI 綠燈不能填成下表通過。
 
@@ -22,6 +22,8 @@
 | AT-14 | REQ-08 | handler 很快但可見效果晚；Playwright 等 ready 後才送探測 | 不授予 100 ms 通過；保留代理值與外部 dispatch 時間 |
 | AT-15 | REQ-08 | 量測誤差界線跨過 100 ms、少一次輸入/捲動探測 | 判定 inconclusive，不能用平均/中位數蓋過缺測或違規 |
 | AT-16 | REQ-10 | provider 沒回 usage、價格不明、工具 runtime 與 token 混算 | 費用 unknown 或明列估算；保留來源及估算方法，不能填 0 |
+| AT-17 | INV-14 / REQ-13 | 摘要只保留支持證據、過期來源顯示為目前來源、unknown 成本被省略 | UI/agent/匯出保留相同限制及反例；不升級狀態；截斷可追查 |
+| AT-18 | INV-15 / REQ-05/13 | fresh agent 續接、來源改變、先前實驗失敗、deadline 已到 | 保留嘗試/失敗；指出失效範圍；不重設預算或重新啟動超時調查 |
 
 每項結果需附 validator 版本、重現素材、實際輸出與原始證據。人工推演只能標 review，不能標 test passed。需要宿主能力才能強制的項目，另列 host-enforced / runner-enforced / advisory，不混為一談。
 
@@ -41,6 +43,7 @@
 | REQ-10 成本可見 | AT-16；usage/價格來源、缺值與估算標示 |
 | REQ-11 盲測與真實案例分開 | 本文件第 3/5 節；獨立 oracle、來源及結果分開記錄 |
 | REQ-12 自由 agent 對照 | 本文件第 4 節；相同條件、fresh session、正確性與成本比較 |
+| REQ-13 看懂/查證/續接 | AT-17/18；[DX 三項任務](AGENT-DEBUG-DX.md) 與本文件第 6 節 |
 
 ## 2. 案例驗收與結論狀態
 
@@ -96,3 +99,12 @@ Ground truth 可容許多條正確解釋或不同修復，不要求 agent 猜中
 - 效率對照資料可重跑；只有數據支持的範圍可以聲稱更有效率。
 
 案例數、可接受錯誤率與最小有用效率收益仍需在正式評估前登記。第一個 spike 只消除可行性未知，不替代整體產品驗收。
+
+## 6. DX 驗收分層
+
+1. **Design review**：獨立 reviewer 檢查假設是否被畫成根因、缺口是否消失、流程是否可續接。不是盲測或使用者測試。
+2. **Browser check**：合成原型的導航、焦點返回、鍵盤、窄畫面、同時無因果事件、stale/unresolved/budget-exhausted 與匯出一致性。合成來源 inspector 不算 AT-13 的真實 viewer/source 接合通過。
+3. **Human task**：未參與設計者完成看懂/查證/續接，記錄時間、誤讀與求助；與等量資訊的摘要+既有工具對照，避免案例熟悉度混淆。
+4. **Runtime integration**：獨立專案產生真實證據，完成摘要到 trace/source 導航與 fresh-agent 續接；仍依原有 30 分鐘與獨立 oracle 驗收。
+
+每層獨立標 passed/failed/blocked/not-run。機械點擊通過不能宣稱人類更容易理解；設計 review 通過不能宣稱診斷有效。新的 UX 時間目標先取基線再事前設定，100 ms 只屬 editor 回應。
