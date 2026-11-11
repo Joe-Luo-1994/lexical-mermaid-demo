@@ -1,5 +1,7 @@
 # 無需原作者在場的 agent 任務
 
+若任務是新版「依專案生成 debug 能力的框架」，先讀 [需求契約](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md) 與 [第一個實驗](AGENT-DEBUG-SPIKE.md)，不要自動執行下方公開 demo。下方 A/B 適用既有工作台與 recording；新框架的 runner/enforcement 尚未實作。
+
 ## A：公開案例首次體驗（預設）
 
 **交付目標：**本機使用者能打開production工作台，指出一筆多出的請求與其原始事件；有一份可重新載入、可交接的證據，不只是安裝成功。

@@ -1,5 +1,7 @@
 # Editor Evidence · v0.2
 
+**產品方向已更新：由 agent 為既有專案生成調查能力的 debug 框架。** 先讀 [需求契約 v0.1](docs/AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](docs/AGENT-DEBUG-ACCEPTANCE.md) 與 [第一個可行性實驗](docs/AGENT-DEBUG-SPIKE.md)。需求基線已確認，enforcement/runner/導航接合尚待實作與驗證；下方工作台與 renderer 比較是現有參考工具，不代表新框架已完成。
+
 **第一次來？從 [START-HERE.md](START-HERE.md) 開始。** 有可直接貼給 agent 的起始指令、五步體驗、安裝受阻時的零依賴範例，以及公司案例的蒐證入口。
 
 **準備到公司接續？** [公司起始 prompt](docs/COMPANY-START.md) 串起環境檢查、[獨立 Mermaid／Pele 比較](experiments/renderer-comparison/README.md) 與 [editor 最小接入契約](docs/EDITOR-INTEGRATION.md)。Renderer 實驗有自己的 lockfile，主工作台與 OpenCode plugin 不需要安裝 Pele；兩種證據格式分開處理。
@@ -8,6 +10,7 @@
 
 | 內部人員想完成什麼 | 從哪裡開始 | 應拿到的成果 |
 |---|---|---|
+| 推進專案客製化 debug 框架 | [契約與下一個實驗](docs/AGENT-DEBUG-SPIKE.md) | 實測可行性與缺口，不把 demo 通過當成跨專案能力 |
 | 先了解工具如何協助定位問題 | [首次體驗](START-HERE.md) | 從多出的一筆請求，追到事件並交給 agent |
 | 判斷 Pele 值不值得接入 | [公司入口 A](docs/COMPANY-START.md#入口-a先比較公開-mermaidpele不需要公司專案) | 同機比較、原始樣本、外觀檢查與下一步決策 |
 | 調查公司 editor 為何慢 | [公司入口 B](docs/COMPANY-START.md#入口-b公司-editor-接入) | 實際程式位置、可追查的觀測與一個單一變因實驗 |

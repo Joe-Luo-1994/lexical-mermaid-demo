@@ -1,6 +1,6 @@
 # 到公司後，從這裡接續
 
-目標：用最少接入工作，把「含 Mermaid 的內容注入很慢」轉成一個能區分原因的實驗。先重現、再量測；公開結果不能證明公司根因。
+目標：讓 agent 依既有專案與具體問題生成適量觀測，在 30 分鐘調查內交付有證據的執行路徑與有判別力的下一實驗。新版 [契約](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md) 與 [可行性實驗](AGENT-DEBUG-SPIKE.md) 是需求來源；enforcement 尚待實作。舊 renderer 實驗仍可作參考，不預設每次都要重跑。
 
 ## 公司只需一個分支
 
@@ -19,26 +19,30 @@ git rev-parse HEAD
 不必看過原始聊天，將這段交給公司允許的 OpenCode 2.2.5／Codex：
 
 ```text
-請以這份 repo 的 main 作為唯一遠端來源，讀 AGENTS.md、README.md 與 docs/COMPANY-START.md。
-核心目標是讓我知道如何利用既有資訊，加速定位公司 Lexical editor 注入後的效能問題。
-先不要安裝全部工具或掃描公司專案：
-1. 記錄 checkout SHA、dirty 狀態，閱讀 docs/RENDERER-VALIDATION.md 與其連結的 summary/experiment。
-2. 用簡短的 Observed/Inferred/Unknown 說明公開結果能支持什麼、還不能支持什麼，引用證據路徑。
-3. 依我已說明的目的選路徑：理解診斷流程走 START-HERE；比較 renderer 走本文件入口 A；
-   調查公司瓶頸走入口 B。若目的仍不明，先展示已有證據與下一個可區分原因的實驗。
-4. 使用已授權的公司專案範圍、資料政策與既有工具；只詢問真正缺少的資訊。
-5. 執行所選路徑必要的準備與驗證，保留原始證據，最後交付一個能支持或推翻假設的下一步。
-沿用本機 OpenCode 2.2.5，不升級來繞過問題；不把公開 renderer 跑分當成公司 editor 改善。
-不要額外拉其他遠端分支，不自動上傳或 push 公司資料。不同證據格式依各自 README 處理。
+請以這份 repo 的 main 作為唯一遠端來源，讀 AGENTS.md 及 docs/AGENT-DEBUG-CONTRACT.md、
+docs/AGENT-DEBUG-ACCEPTANCE.md、docs/AGENT-DEBUG-SPIKE.md。
+目標是依專案當前狀態生成有效觀測；現有 demo/renderer 工具只是參考，不是產品目標。
+1. 記錄 checkout/dirty 與能力清單，區分已實作、待實作、待實測；不得宣稱規格就是 enforcement。
+2. 沿用本 session 已授權的公司路徑與資料流向，只詢問缺項。沒有路徑就先做公開可行性準備。
+3. 本案是網站已開啟後點進尚未顯示文件的主執行緒阻塞。先重現、定位相關來源與缺證，
+   再用現有工具及最小生成 patch 消除未知；不為了畫全圖或埋滿事件而工作。
+4. 環境可啟動且人已完成登入後，調查最多 30 分鐘，包含掃描/索引/建置/子任務。
+   目前若沒有可信 runner deadline，就明列為人工/宿主計時，不能聲稱已強制執行。
+5. 已核准範圍可在隔離 worktree 自動觀測、修復、測試；合併由人決定。成本如實記錄。
+6. 人可沿用 Chrome/Perfetto，但摘要要能定位同一事件/時間/來源。可見輸入/捲動回應門檻
+   是 100 ms，不能拿 handler、DOM 或兩次 rAF 代替；延後內容另測捲入反應。
+交付 Observed/Inferred/Unknown、原始證據與下一個有判別力的實驗；未達成要明列。
+不自動上傳/push 公司資料、不升級 OpenCode 2.2.5 繞過問題，不把公開結果當公司根因。
 ```
 
 首次交接應說清楚三件事：**已經知道什麼、這次要消除哪個未知、用哪份證據驗證。** 若已有公司重現與足夠證據，可以直接走入口 B，不必先重跑所有公開 benchmark。
 
 ## 已知背景
 
-- 公司 Lexical 為 **0.18.0**；React、Mermaid 實際版本要查公司 lockfile 與 runtime。
-- 約 20k 字元的 Markdown 轉換已驗證很快；關注 **editor update／注入開始後** 的工作。
-- 使用者觀察：無 Mermaid 約 300–400 ms，換入圖表後約 2–3 秒，且文件越大越明顯。這是問題描述，尚非此 repo 留存的公司測量證據。
+- 新版已確認：網站已開啟後，進入未顯示文件時約 3 秒無回應，使用者已排除網路傳輸。Pele 已試用且回報效能良好；剩餘調查不預設是 Mermaid/Pele 瓶頸。
+- 公司 Lexical 為 **0.18.0**；React、Pele 及仍在使用的 renderer 實際版本要查公司 lockfile 與 runtime。
+- 歷史 renderer 案例中，約 20k 字元的 Markdown 轉換已驗證很快；當時關注 **editor update／注入開始後** 的工作。
+- 當時使用者觀察：無 Mermaid 約 300–400 ms，換入圖表後約 2–3 秒，且文件越大越明顯。這是歷史問題描述，不證明新版載入問題仍由同一原因造成，也不是此 repo 留存的公司測量證據。
 - OpenCode **2.2.5 Web**、server 在自己的電腦；公司內網可存取 public repo。Desktop Codex 也可使用相同流程。
 - 公開工具已提供合成案例、單筆 recording 查詢與配對實驗。新 renderer 實驗是獨立格式，不是任意公司 editor 的錄製器。
 
@@ -67,16 +71,17 @@ git rev-parse HEAD
 沿用 [COMPANY-CASE.md](COMPANY-CASE.md) 的範圍與資料使用約定。既有 session 已授權的路徑和操作不需要重複確認；缺的資訊才補充。使用者未指定公司路徑時，不自行掃描磁碟。
 
 ```text
-請讀 docs/COMPANY-CASE.md 和 docs/EDITOR-INTEGRATION.md，沿用本 session 已授權的公司專案範圍與資料政策。
+請先讀 docs/AGENT-DEBUG-CONTRACT.md 與 docs/AGENT-DEBUG-SPIKE.md，沿用本 session 已授權的公司專案範圍與資料政策。
 公司專案：[填實際路徑；若前文已有就沿用]
 重現操作與案例：[填操作與本機檔案，或沿用已給資訊]
 讀/改範圍及允許的模型資料：[填缺少的資訊；不覆蓋既有授權]
-目標是 editor 注入後的成本，先確認 Lexical/React/Mermaid 實際版本與呼叫位置。
-先利用既有 trace/標記；必要時依 EDITOR-INTEGRATION 做最小、可移除的觀測。
-只在允許修改時實作，保持 company fixtures 與 trace 在公司核准的本機工作區。
-先交付實際流程與一個對照：同一張圖，周圍文件 20k/50k/80k。
-若要換 Pele，另開 worktree，固定 component 生命週期與量測終點；不同時加入 lazy load/worker/cache。
-每輪保留失敗與慢樣本，檢查輸入、undo、儲存與圖表語意。不要從公開 benchmark 推論公司根因。
+先確認實際版本、重現/快取/首屏條件與工具能力。從已準備環境開始計 30 分鐘，含索引與建置。
+先利用既有 trace；必要時根據候選路徑生成最小、可移除的觀測，記錄結果如何改變下一步。
+已核准範圍可在隔離 worktree 自動加觀測、候選修復並測試；合併由人決定。
+公司資料保留在核准的本機工作區。不同事件/trace/recording 格式不互相冒充。
+先交付有證據的路徑與可否證下一實驗；保留失敗、成本、覆蓋缺口與無法支持的判斷。
+若延後畫面外內容，另驗證捲入不卡頓；首屏完整及輸入/捲動可見回應 100 ms 是不同條件。
+不能把公開 demo CI 當作本調查框架通過，也不預設要更換 renderer。
 ```
 
 ## 公司前的準備

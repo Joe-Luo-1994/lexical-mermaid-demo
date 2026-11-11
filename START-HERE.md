@@ -1,5 +1,7 @@
 # 明天第一次打開，就從這裡開始
 
+**要推進新版 debug 框架？** 從 [已確認契約](docs/AGENT-DEBUG-CONTRACT.md) 與 [第一個可行性實驗](docs/AGENT-DEBUG-SPIKE.md) 開始。下方是既有公開工作台的體驗流程，不是新框架的完整交付或必要前置測試。
+
 **Editor Evidence 幫你把「匯入好像變慢」變成一個有證據、能驗證的下一步。**
 
 公司環境只需拉取 `main`，即可取得工作台、OpenCode 交接與 renderer 實驗。內部人員可先讀 [公司入口的共用起始 prompt](docs/COMPANY-START.md)，由 agent 整理已知、未知與適合的路徑；不用追查各個 PR。

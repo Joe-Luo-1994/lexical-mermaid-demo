@@ -1,5 +1,7 @@
 # 從公開案例到公司問題
 
+新版正式需求見 [Agent Debug v0.1](AGENT-DEBUG-CONTRACT.md)。本文件保留初次只讀盤點範本；若使用者已授權隔離 worktree 內的觀測/修復/測試，沿用既有授權，不因下方範本再次要求批准。新調查由 [公司共用入口](COMPANY-START.md) 開始，不預設 renderer 是根因。
+
 這個repo不能直接接管公司editor，也不能把任意Chrome trace變成recording。先判斷缺的是哪一段證據，再決定最小接入。
 
 ## 可貼給公司環境 agent 的起始指令
