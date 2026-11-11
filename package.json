@@ -16,7 +16,9 @@
     "test:rules": "node --test scripts/diagnostics.test.mjs scripts/report-query.test.mjs scripts/handoff.test.mjs scripts/experiment.test.mjs",
     "test:browser": "node scripts/verify-evidence.mjs && node scripts/verify-experiment.mjs && npm run test:ux",
     "test:legacy": "node scripts/verify.mjs",
-    "test:ux": "node scripts/verify-ux.mjs"
+    "test:ux": "node scripts/verify-ux.mjs",
+    "test:debug": "node --test debug-core/core.test.mjs debug-core/cli.test.mjs debug-core/examples/lexical-rich/probe.test.mjs debug-core/archive.test.mjs",
+    "test:debug:browser": "node debug-core/verify-runtime.mjs && node debug-core/verify-viewer.mjs && node debug-core/verify-latest-navigation.mjs"
   },
   "dependencies": {
     "@lexical/code": "0.18.0",

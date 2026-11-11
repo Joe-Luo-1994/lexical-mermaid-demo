@@ -1,6 +1,6 @@
 # Agent Debug 調查契約 v0.2
 
-日期：2026-11-11。狀態：**使用者需求基線已確認；下列 enforcement 是待實作、待驗證的工程設計。** 目前有規格與合成 DX 設計原型，沒有交付通用 collector、runner 或新的 OpenCode 工具。
+日期：2026-11-11。狀態：**使用者需求基線已確認；下列 enforcement 是待實作、待驗證的工程設計。** 已有 [debug-core 可執行切片](../debug-core/README.md)：案例 runner、證據查詢、本機 inspector 與選用 OpenCode 唯讀工具。它只實作部分 enforcement；完整狀態見 [交付紀錄](../debug-core/VALIDATION.md)，不是通用 collector 或整體契約通過。
 
 本文件是新方向的需求來源。[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md) 定義如何否證它，[第一個可行性實驗](AGENT-DEBUG-SPIKE.md) 定義下一步。舊工作台與 Mermaid/Pele 比較是參考工具及回歸素材，通過其測試不代表本契約通過。
 
@@ -82,7 +82,7 @@ Pele 已在公司試用且使用者回報效能良好；實際 Pele/React/browse
 
 ## 4. 調查產物與導航契約
 
-下列是邏輯產物，檔名是設計提案，**尚無 CLI/工具可執行此協定**：
+下列是邏輯產物，檔名是設計提案，具體已實作格式見 [FORMAT](../debug-core/FORMAT.md)，未實作部分不得由格式存在推定已通過：
 
 | 產物 | 必須回答 |
 |---|---|
@@ -122,3 +122,9 @@ Agent 先讀有界摘要，按 ID 取必要事件/子圖/stack。可建立完整
 DX 的硬性正確性包含引用一致、版本失效處理、反證可見與預算續接；理解成本、查證時間及接續效率另由人類任務與 fresh-agent 對照驗證。外觀與鍵盤/窄畫面是產品品質檢查，不可代替診斷準確率。以相同成功層級比較成本，token 下降但錯誤歸因上升不算改善。
 
 原型內的事件、時間、來源與交接格式均為合成示意；不能拿來通過 AT-13/14/15 或聲稱已完成公司診斷。正式接合以第一個 runtime spike 為準。
+
+## 7. 可執行切片的可信邊界
+
+`debug-core` 提供有界 case/run 管理、來源快照、raw 引用檢查、讀取範圍、原 deadline、錯誤保存與本機導航；專案分析、probe/adapter 與下一實驗由 agent 生成。Runner 對自己的命令計時與取消，無權硬性終止宿主 agent 的其他 shell/分析；case hash 不是防惡意竄改的簽章。完整 acceptance matrix 仍需逐項驗證，不可把本次局部反例測試當全數 enforced。
+
+第一個公開接合使用官方 Lexical 0.18 rich-text 範例及明示的文件開啟 adaptation，取得真實 runtime 記錄；這是工程接合測試，不是盲測、自主 30 分鐘探索成績或公司根因。真實可見回應 100 ms、候選修復比較、外部 Perfetto 接合及效率對照未完成。

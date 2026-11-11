@@ -1,6 +1,6 @@
 # 第一版實驗契約
 
-本文件適用既有合成工作台。新版 agent 依專案生成觀測的產品需求，以 [Agent Debug v0.1](AGENT-DEBUG-CONTRACT.md) 為準；本文件的 demo 規則不代表新框架已有 enforcement。
+本文件適用既有合成工作台。新版 agent 依專案生成觀測的產品需求，以 [Agent Debug 契約](AGENT-DEBUG-CONTRACT.md) 為準；本文件的 demo 規則不代表新框架已有 enforcement。
 
 ## 使用者價值
 

@@ -1,5 +1,7 @@
 # 明天第一次打開，就從這裡開始
 
+**可執行 debug 核心：**[開始使用](debug-core/README.md) · [給內部 agent 的任務](debug-core/AGENT-PLAYBOOK.md) · [已驗證／待驗證](debug-core/VALIDATION.md)。依專案生成 adapter，核心負責案例、引用、期限與查證；不宣稱公司根因或 100 ms 已驗證。
+
 **新版框架 DX 設計：**[案例流程與迭代](docs/AGENT-DEBUG-DX.md) · [可點擊合成原型／啟動方式](design/agent-debug/README.md)。原型不是公司診斷器；真實證據接合仍待驗證。
 
 **要推進新版 debug 框架？** 從 [已確認契約](docs/AGENT-DEBUG-CONTRACT.md) 與 [第一個可行性實驗](docs/AGENT-DEBUG-SPIKE.md) 開始。下方是既有公開工作台的體驗流程，不是新框架的完整交付或必要前置測試。

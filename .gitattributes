@@ -1,0 +1,4 @@
+# Preserve the bytes used by core and published evidence fingerprints.
+debug-core/core.mjs text eol=lf
+debug-core/evidence/** -text
+debug-core/examples/lexical-rich/upstream/** -text

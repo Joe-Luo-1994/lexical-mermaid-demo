@@ -5,6 +5,9 @@ results/*.trace.json
 results/
 recordings/
 
+# Project-local investigation artifacts may contain source snapshots and traces.
+.debug-cases/
+
 # Machine-local runtimes and opt-in OpenCode configuration are not distributable.
 .tools/
 opencode.json

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
+<title>Editor Evidence · 案例查證</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/viewer.css"><script src="/viewer.js" defer></script>
+</head>
+<body>
+<a href="#main" class="skip">跳至案例內容</a>
+<div class="notice">本機唯讀檢視 · 顯示案例實際產物；格式通過不代表診斷正確。</div>
+<div class="shell"><aside><div class="brand">Editor Evidence<small>Case investigation</small></div><p class="muted">一份案例，同一份證據。</p><label for="run-select">調查嘗試</label><select id="run-select"><option value="">讀取中…</option></select><p id="attempt-count" class="small"></p><div class="actions"><button id="newer" disabled>較新嘗試</button><button id="older" disabled>較舊嘗試</button></div><button id="refresh">重新查核案例</button><div class="aside-note"><strong>能力界線</strong><p>本工具支援事件、原始紀錄與來源快照導航。外部 Perfetto／Chrome 接合與 100 ms 可見回應尚未驗證。</p></div></aside>
+<main id="main" tabindex="-1"><header><div class="eyebrow">Investigation case</div><h1 id="operation">正在讀取案例</h1><p id="case-id" class="small mono"></p><div class="badges" id="case-state"></div></header>
+<div id="error" class="error" hidden role="alert"></div>
+<section id="summary" class="card lead"><div class="kicker">目前判斷 · 證據與限制分開閱讀</div><h2>先確認支持什麼，再決定下一步</h2><div id="run-state" class="badges"></div><div id="findings"></div><div class="rule"><h3>限制與未知</h3><p id="capability-summary" class="small">可見回應與外部 viewer 尚未驗證。</p><details id="limitations-disclosure"><summary id="limitations-label">展開完整限制</summary><ul id="limitations"></ul></details></div></section>
+<section class="card" aria-labelledby="events-title"><div class="topline"><div><div class="kicker">查證路徑</div><h2 id="events-title">定位同一 run 的事件與來源</h2></div><label>搜尋事件 <input id="event-filter" type="search" placeholder="名稱或 ID"></label></div><p class="small">時間範圍是觀測 span，不自動等於 CPU 時間；時間鄰近不建立因果。</p><p id="event-count" class="small"></p><div class="split"><div id="events" class="event-list"></div><section id="inspector" class="inspector" tabindex="-1" aria-label="事件詳情"><p>選取事件以查核證據。</p></section></div></section>
+<section class="card" aria-labelledby="experiment-title"><div class="kicker">下一個實驗 · 尚未執行的計畫</div><h2 id="experiment-title">讓不同結果改變下一步</h2><div id="experiment"></div></section>
+<section class="card" aria-labelledby="handoff-title"><div class="kicker">交接續查</div><h2 id="handoff-title">保留限制、來源身分與剩餘預算</h2><p>下載摘要供下一個 agent 使用；原始 run 保留在本機案例目錄。此操作不會上傳或傳送訊息。</p><button id="download" class="primary">下載目前案例摘要</button><p class="small">續接不重設期限。變更來源後先重新查核；歷史快照不能直接歸因目前版本。</p></section>
+<div id="status" role="status" aria-live="polite"></div><footer>所有內容來自所選案例；無內建合成資料補值。缺失與失敗保留原狀。</footer></main></div>
+</body></html>

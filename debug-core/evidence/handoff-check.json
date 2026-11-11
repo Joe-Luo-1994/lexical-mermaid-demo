@@ -1,0 +1,38 @@
+{
+  "kind": "fresh-agent-handoff-smoke",
+  "caseId": "28745842-ba71-4ae8-ad76-467611720d7c",
+  "runId": "0031e696-e4c1-4f6d-be26-42f0a1bcfa00",
+  "toolCalls": 4,
+  "inputs": "case summary plus e3/e4/e2 queries; no conversation or implementation provided",
+  "supportedPath": {
+    "from": "e3",
+    "to": "e4",
+    "type": "captured-call",
+    "source": "src/plugins/ToolbarPlugin.tsx",
+    "lines": [
+      53,
+      54
+    ]
+  },
+  "notCausal": {
+    "from": "e2",
+    "to": "e3",
+    "type": "temporal-association"
+  },
+  "unknowns": [
+    "bottleneck",
+    "redundancy",
+    "layout cost",
+    "100 ms",
+    "improvement",
+    "clock alignment"
+  ],
+  "nextExperiment": "Measure listener versus layout with fixed document/viewport/plugins/font/cache and preserved formatting/typing; choose next intervention according to the result.",
+  "remainingSecondsAtSummary": 1721.367,
+  "deadlineAt": "2026-11-11T23:47:48.193Z",
+  "mutations": false,
+  "blockers": [],
+  "tokens": null,
+  "fee": null,
+  "scope": "Readability/continuation smoke check, not blind diagnostic efficacy or company validation"
+}

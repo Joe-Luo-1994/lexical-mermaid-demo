@@ -1,0 +1,46 @@
+[
+  {
+    "id": "e1",
+    "name": "Document open handler",
+    "source": {
+      "path": "src/plugins/DocumentOperationPlugin.jsx",
+      "line": 10
+    },
+    "startMs": 253.09999999776483,
+    "durationMs": 5.300000000745058
+  },
+  {
+    "id": "e2",
+    "name": "editor.update invocation",
+    "source": {
+      "path": "src/plugins/DocumentOperationPlugin.jsx",
+      "line": 11
+    },
+    "startMs": 253.09999999776483,
+    "durationMs": 5.300000000745058,
+    "parentId": "e1",
+    "parentType": "sync-call"
+  },
+  {
+    "id": "e3",
+    "name": "Toolbar update listener",
+    "source": {
+      "path": "src/plugins/ToolbarPlugin.tsx",
+      "line": 53
+    },
+    "startMs": 273.19999999925494,
+    "durationMs": 0.09999999776482582
+  },
+  {
+    "id": "e4",
+    "name": "Toolbar editorState.read",
+    "source": {
+      "path": "src/plugins/ToolbarPlugin.tsx",
+      "line": 54
+    },
+    "startMs": 273.19999999925494,
+    "durationMs": 0.09999999776482582,
+    "parentId": "e3",
+    "parentType": "sync-call"
+  }
+]

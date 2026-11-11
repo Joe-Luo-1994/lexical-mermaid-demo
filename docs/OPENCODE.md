@@ -1,5 +1,7 @@
 # OpenCode 2.2.5 本機交接
 
+**新增的案例工具（2026-11-11）：**同一 opt-in plugin 現在另註冊 `editor-debug-case`，輸入 `casePath` 與可選 `runId/eventId/limit/offset`；讀取 [debug-core](../debug-core/README.md) case 目錄。它不接受舊 recording，也不執行命令。Case 與 manifest project root 均須位於 active location。此次只驗證 2.2.5 SDK 註冊/呼叫與路徑界線，下面 Windows Web 實測屬舊 `editor-evidence`，不能移用為新工具 Web 已通過。
+
 2026-11-10 更新：已在一台 Windows 本機完成 SDK、server active、兩個 Web session 的真實工具呼叫與 ID/CLI 對照；詳見 [本機驗證摘要](WINDOWS-VALIDATION.md)。這不代表新機自動通過或 agent 判讀可靠；下列最初 SDK 紀錄保留為歷史。首次使用可直接從 [agent onboarding](AGENT-START.md) 開始。
 
 **最短可用路徑：** `node scripts/report-query.mjs <recording.json>`。CLI 無第三方依賴；OpenCode 可以透過既有終端工具執行，不必先安裝 plugin。

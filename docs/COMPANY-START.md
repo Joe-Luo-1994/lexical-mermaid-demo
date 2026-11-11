@@ -1,5 +1,7 @@
 # 到公司後，從這裡接續
 
+**新 debug 工具入口：**依 [debug-core/AGENT-PLAYBOOK.md](../debug-core/AGENT-PLAYBOOK.md) 讓 agent 在已授權 worktree 生成本案 adapter；先讀 [已驗證／未驗證](../debug-core/VALIDATION.md)，不要自動回到 Mermaid demo。
+
 目標：讓 agent 依既有專案與具體問題生成適量觀測，在 30 分鐘調查內交付有證據的執行路徑與有判別力的下一實驗。新版 [契約](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md) 與 [可行性實驗](AGENT-DEBUG-SPIKE.md) 是需求來源；enforcement 尚待實作。舊 renderer 實驗仍可作參考，不預設每次都要重跑。
 
 ## 公司只需一個分支

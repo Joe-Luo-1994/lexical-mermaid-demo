@@ -1,0 +1,151 @@
+{
+  "kind": "agent-debug-case",
+  "version": 1,
+  "id": "28745842-ba71-4ae8-ad76-467611720d7c",
+  "root": "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project",
+  "operation": "In the already running official Lexical 0.18 rich-text example, click Open reference document; inspect generated probes and original toolbar listener",
+  "startedAt": "2026-11-11T23:17:48.193Z",
+  "deadlineAt": "2026-11-11T23:47:48.193Z",
+  "budgetSeconds": 1800,
+  "limits": {
+    "maxEvents": 2000,
+    "maxCaptureBytes": 2097152,
+    "maxArtifactBytes": 33554432
+  },
+  "coreVersion": "0.1.0",
+  "coreSha256": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+  "attempts": [
+    {
+      "id": "1cc1939c-22eb-4bae-a82a-a2e6ce98c987",
+      "status": "completed",
+      "startedAt": "2026-11-11T23:17:48.222Z",
+      "controllerPid": 8484,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project/capture-adapter.mjs",
+        "--baseline"
+      ],
+      "plan": {
+        "question": "Does the uninstrumented upstream application support this controlled document-open and typing operation?",
+        "outcomes": [
+          "Complete expected content permits source-targeted observation",
+          "Failed content or typing blocks observation comparison"
+        ],
+        "sources": [
+          "src/App.tsx",
+          "src/plugins/DocumentOperationPlugin.jsx",
+          "src/plugins/ToolbarPlugin.tsx",
+          "capture-adapter.mjs",
+          "runtime.json",
+          "runtime-vite.config.mjs",
+          "fixture-provenance.json"
+        ],
+        "limitations": [
+          "Functional baseline only; no plugin timing or visible-response claims"
+        ]
+      },
+      "provenance": {
+        "node": "v24.22.1",
+        "platform": "linux",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project/capture-adapter.mjs",
+          "--baseline"
+        ],
+        "adapter": {
+          "path": "capture-adapter.mjs",
+          "sha256": "4300bc3b655a3e74fd7af1da59ef70b263639deb319b4b9b56bdcbea0e573283"
+        },
+        "git": {
+          "status": "enclosing-repository",
+          "repositoryRoot": "/workspace/editor-dx",
+          "projectRoot": "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project",
+          "head": "27ffaccc75d5c86238effcf9344d5398fdac251f",
+          "dirty": false,
+          "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "limitation": "Project is nested inside an enclosing repository; this HEAD is not independent project origin. Only declared source hashes attest copied/untracked contents."
+        },
+        "sourceScope": "Only declared sources and adapter are snapshotted; dependency/build completeness is not attested."
+      },
+      "coreVersion": "0.1.0",
+      "coreSha256": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+      "exitCode": 0,
+      "reason": null,
+      "error": null,
+      "elapsedMs": 2167.6473,
+      "logBytes": 404,
+      "finishedAt": "2026-11-11T23:17:50.392Z",
+      "issues": [],
+      "sealHash": "ce62d64a47d014e25034cd1f90735dccdaced6eba2a8051c967359c55ec98c96"
+    },
+    {
+      "id": "0031e696-e4c1-4f6d-be26-42f0a1bcfa00",
+      "status": "completed",
+      "startedAt": "2026-11-11T23:17:50.429Z",
+      "controllerPid": 8484,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project/capture-adapter.mjs"
+      ],
+      "plan": {
+        "question": "Which source-located synchronous calls occur when opening the reference document, and does the original toolbar react to the update?",
+        "outcomes": [
+          "A matching parent record and child record support a synchronous call path",
+          "Missing parent/source or dropped events leave that path unverified; do not infer it from neighboring times"
+        ],
+        "sources": [
+          "src/App.tsx",
+          "src/plugins/DocumentOperationPlugin.jsx",
+          "src/plugins/ToolbarPlugin.tsx",
+          ".debug/probe.js",
+          "capture-adapter.mjs",
+          "runtime.json",
+          "runtime-vite.config.mjs",
+          "fixture-provenance.json",
+          "observation.patch"
+        ],
+        "limitations": [
+          "Public upstream example with controlled document-open fixture, not a blind test or company case",
+          "The generated probes measure synchronous wall duration; observer overhead is not calibrated",
+          "No source-map inference: explicit generated source locations are snapshotted and validated",
+          "No arbitrary async parent propagation or full editor coverage"
+        ]
+      },
+      "provenance": {
+        "node": "v24.22.1",
+        "platform": "linux",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project/capture-adapter.mjs"
+        ],
+        "adapter": {
+          "path": "capture-adapter.mjs",
+          "sha256": "4300bc3b655a3e74fd7af1da59ef70b263639deb319b4b9b56bdcbea0e573283"
+        },
+        "git": {
+          "status": "enclosing-repository",
+          "repositoryRoot": "/workspace/editor-dx",
+          "projectRoot": "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project",
+          "head": "27ffaccc75d5c86238effcf9344d5398fdac251f",
+          "dirty": false,
+          "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "limitation": "Project is nested inside an enclosing repository; this HEAD is not independent project origin. Only declared source hashes attest copied/untracked contents."
+        },
+        "sourceScope": "Only declared sources and adapter are snapshotted; dependency/build completeness is not attested."
+      },
+      "coreVersion": "0.1.0",
+      "coreSha256": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+      "exitCode": 0,
+      "reason": null,
+      "error": null,
+      "elapsedMs": 1502.3745790000003,
+      "logBytes": 467,
+      "finishedAt": "2026-11-11T23:17:51.932Z",
+      "issues": [],
+      "sealHash": "3b71c626e468bc1b51becd0c2f2fd445f31efbe79fe2a1a249e18f99a5a6bd49"
+    }
+  ],
+  "identityHash": "73c7cd55795e5723bbb931cb0bed4395df2fd5cd64b90c2297a1d5ef761d8a7d"
+}

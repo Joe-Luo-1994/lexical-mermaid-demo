@@ -1,0 +1,53 @@
+// Read-only browser verification against an existing real case. No fixture writes.
+import assert from 'node:assert/strict';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {existsSync} from 'node:fs';
+import {chromium} from 'playwright';
+import {queryCase,getRun} from './core.mjs';
+import {serveCase} from './serve.mjs';
+
+const caseDir=process.argv[2];
+if(!caseDir)throw new Error('Usage: node debug-core/verify-navigation.mjs CASE_DIR [RUN_ID]');
+const summary=await queryCase(caseDir,{limit:20});
+const runId=process.argv[3] || summary.latest?.runId;
+assert.ok(runId,'Case must contain a recorded run');
+const run=await getRun(caseDir,runId);
+assert.equal(run.validity.valid,true,'Run integrity must pass before navigation check');
+const event=run.capture.events.find(e=>e.source);
+assert.ok(event,'Run must contain an event with a pinned source');
+const out=new URL('../results/debug-core-navigation/',import.meta.url);
+await mkdir(out,{recursive:true});
+const server=await serveCase(caseDir);
+const base=`http://127.0.0.1:${server.address().port}`;
+const checks=[],errors=[],external=[];
+const check=(name,value)=>{assert.ok(value,name);checks.push(name);};
+let browser;
+try{
+  browser=await chromium.launch({executablePath:process.env.BROWSER_PATH || (existsSync('/usr/bin/chromium')?'/usr/bin/chromium':undefined),headless:true,args:['--no-sandbox']});
+  const page=await browser.newPage({viewport:{width:1440,height:1100},reducedMotion:'reduce'});
+  page.on('pageerror',e=>errors.push(String(e)));
+  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  page.on('request',r=>{if(!r.url().startsWith(base)&&!r.url().startsWith('blob:')&&!r.url().startsWith('data:'))external.push(r.url());});
+  await page.goto(base+'/#'+new URLSearchParams({run:runId,event:event.id}));
+  await page.locator('.source-line.target').waitFor();
+  check('same real case',await page.locator('#case-id').innerText()===summary.id);
+  check('same real run and event',(await page.locator('#inspector').innerText()).includes(runId) && page.url().includes(new URLSearchParams({event:event.id}).toString()));
+  check('correct recorded source line',await page.locator('.source-line.target').getAttribute('data-line')===String(event.source.line));
+  const source=run.sources.find(s=>s.path===event.source.path);
+  check('source SHA matches pinned snapshot',(await page.locator('#inspector').innerText()).includes(source.sha256));
+  check('source text matches snapshot',(await page.locator('.source-line.target').innerText()).includes(source.text.split('\n')[event.source.line-1]));
+  check('known evidence limitations retained',(await page.locator('#capability-summary').innerText()).includes('100 ms'));
+  await page.screenshot({path:new URL('runtime-desktop.png',out).pathname,fullPage:true});
+  const downloadPromise=page.waitForEvent('download');
+  await page.getByRole('button',{name:'下載目前案例摘要',exact:true}).click();
+  await (await downloadPromise).saveAs(new URL('handoff.json',out).pathname);
+  const handoff=JSON.parse(await readFile(new URL('handoff.json',out),'utf8'));
+  check('real identity and deadline survive handoff',handoff.summary.id===summary.id && handoff.summary.deadlineAt===summary.deadlineAt && handoff.selectedRun.attempt.id===runId && handoff.selectedEventId===event.id);
+  await page.setViewportSize({width:390,height:844});
+  check('runtime case narrow layout',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.screenshot({path:new URL('runtime-mobile.png',out).pathname,fullPage:true});
+  check('no browser errors',errors.length===0);check('no external requests',external.length===0);
+  const result={kind:'debug-core-real-case-navigation',caseId:summary.id,runId,eventId:event.id,source:{path:source.path,line:event.source.line,sha256:source.sha256},browser:browser.version(),checks,errors,externalRequests:external,scope:'internal exact run/event/pinned source navigation and handoff',unverified:['external Chrome/Perfetto navigation','source attribution semantic correctness','human usability','100 ms response','root cause or improvement']};
+  await writeFile(new URL('browser-check.json',out),JSON.stringify(result,null,2)+'\n');
+  console.log(JSON.stringify(result,null,2));
+}finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}

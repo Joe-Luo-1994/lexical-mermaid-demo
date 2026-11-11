@@ -1,5 +1,7 @@
 # Editor Evidence · v0.2
 
+**可執行 debug 核心：**[開始使用](debug-core/README.md) · [給內部 agent 的任務](debug-core/AGENT-PLAYBOOK.md) · [已驗證／待驗證](debug-core/VALIDATION.md)。依專案生成 adapter，核心負責案例、引用、期限與查證；不宣稱公司根因或 100 ms 已驗證。
+
 **新版框架 DX 設計：**[案例流程與迭代](docs/AGENT-DEBUG-DX.md) · [可點擊合成原型／啟動方式](design/agent-debug/README.md)。原型不是公司診斷器；真實證據接合仍待驗證。
 
 **產品方向已更新：由 agent 為既有專案生成調查能力的 debug 框架。** 先讀 [需求契約 v0.1](docs/AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](docs/AGENT-DEBUG-ACCEPTANCE.md) 與 [第一個可行性實驗](docs/AGENT-DEBUG-SPIKE.md)。需求基線已確認，enforcement/runner/導航接合尚待實作與驗證；下方工作台與 renderer 比較是現有參考工具，不代表新框架已完成。

@@ -1,0 +1,161 @@
+{
+  "kind": "agent-debug-capture",
+  "version": 1,
+  "runId": "0031e696-e4c1-4f6d-be26-42f0a1bcfa00",
+  "clock": {
+    "unit": "ms",
+    "origin": "performance.timeOrigin",
+    "timeOrigin": 1794439071259.3
+  },
+  "events": [
+    {
+      "id": "e1",
+      "name": "Document open handler",
+      "startMs": 253.09999999776483,
+      "durationMs": 5.300000000745058,
+      "source": {
+        "path": "src/plugins/DocumentOperationPlugin.jsx",
+        "line": 10
+      },
+      "rawRef": {
+        "artifact": "raw.json",
+        "index": 0
+      }
+    },
+    {
+      "id": "e2",
+      "name": "editor.update invocation",
+      "startMs": 253.09999999776483,
+      "durationMs": 5.300000000745058,
+      "source": {
+        "path": "src/plugins/DocumentOperationPlugin.jsx",
+        "line": 11
+      },
+      "rawRef": {
+        "artifact": "raw.json",
+        "index": 1
+      }
+    },
+    {
+      "id": "e3",
+      "name": "Toolbar update listener",
+      "startMs": 273.19999999925494,
+      "durationMs": 0.09999999776482582,
+      "source": {
+        "path": "src/plugins/ToolbarPlugin.tsx",
+        "line": 53
+      },
+      "rawRef": {
+        "artifact": "raw.json",
+        "index": 2
+      }
+    },
+    {
+      "id": "e4",
+      "name": "Toolbar editorState.read",
+      "startMs": 273.19999999925494,
+      "durationMs": 0.09999999776482582,
+      "source": {
+        "path": "src/plugins/ToolbarPlugin.tsx",
+        "line": 54
+      },
+      "rawRef": {
+        "artifact": "raw.json",
+        "index": 3
+      }
+    }
+  ],
+  "relations": [
+    {
+      "from": "e1",
+      "to": "e2",
+      "type": "captured-call",
+      "reason": "Both wrappers were active on the synchronous JavaScript call stack; raw child parentId and parentType record this relationship"
+    },
+    {
+      "from": "e3",
+      "to": "e4",
+      "type": "captured-call",
+      "reason": "Both wrappers were active on the synchronous JavaScript call stack; raw child parentId and parentType record this relationship"
+    },
+    {
+      "from": "e2",
+      "to": "e3",
+      "type": "temporal-association",
+      "reason": "The editor later notified the listener; these probes do not capture the asynchronous scheduling edge"
+    }
+  ],
+  "coverage": {
+    "installed": [
+      "Document open handler",
+      "editor.update invocation",
+      "upstream Toolbar update listener",
+      "upstream Toolbar editorState.read"
+    ],
+    "dropped": 0,
+    "limitations": [
+      "Only these four source sites are observed",
+      "Synchronous wall time includes called work; overlapping spans cannot be added as CPU",
+      "Probe and Chrome tracing overhead uncalibrated; this run is diagnostic, not a benchmark",
+      "Chrome trace clock is not mapped to the probe clock; no external viewer navigation claim"
+    ]
+  },
+  "artifacts": [
+    "raw.json",
+    "behavior.json",
+    "chrome-trace.json",
+    "document.png"
+  ],
+  "findings": [
+    {
+      "id": "source-path",
+      "status": "observed",
+      "text": "Recorded 4 runtime spans and 2 synchronous call edges while opening an unseen document in the upstream Lexical example.",
+      "eventIds": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "limitations": [
+        "A captured path is not a bottleneck diagnosis",
+        "Public controlled operation is not the company case"
+      ]
+    },
+    {
+      "id": "toolbar-followup",
+      "status": "hypothesis",
+      "text": "The original toolbar may contribute work after document insertion; no redundant work or dominant cost has been established.",
+      "eventIds": [
+        "e3"
+      ],
+      "limitations": [
+        "No causal scheduling edge captured from update invocation to later listener",
+        "No candidate repair or controlled performance comparison executed"
+      ]
+    }
+  ],
+  "nextExperiment": {
+    "question": "Does the toolbar listener contribute material document-open cost while retaining required formatting behavior?",
+    "intervention": "Measure the listener and layout separately first; only then propose a semantically equivalent change at the observed source site",
+    "controls": [
+      "Same document content and viewport",
+      "Same original plugin set and font/cache conditions",
+      "Required formatting and typing behavior",
+      "Separate diagnostic tracing from performance acceptance"
+    ],
+    "outcomes": [
+      "Substantial repeated listener work supports a targeted equivalent-work experiment",
+      "Small listener cost or dominant layout refutes prioritizing this listener",
+      "Any formatting/content regression invalidates a proposed improvement"
+    ]
+  },
+  "capabilities": {
+    "visibleResponse": "unverified",
+    "externalViewer": "unverified"
+  },
+  "costs": {
+    "tokens": null,
+    "fee": null
+  }
+}

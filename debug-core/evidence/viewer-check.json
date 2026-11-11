@@ -1,0 +1,38 @@
+{
+  "kind": "debug-core-viewer-check",
+  "browser": "156.0.8078.79",
+  "checks": [
+    "server rejects mutation",
+    "server rejects foreign origin",
+    "server rejects foreign host",
+    "source path traversal rejected",
+    "unknown event is not replaced by nearest",
+    "full limitations start collapsed with visible capability gaps",
+    "full limitations remain available through disclosure",
+    "finding selects exact run/event",
+    "source inspector highlights exact saved line",
+    "source content rendered as text",
+    "no causal upgrade for same-time events",
+    "unmapped source is not announced as successful navigation",
+    "return restores event focus",
+    "keyboard opens inspector",
+    "deep link restores same event/source",
+    "handoff retains case/deadline/limitations",
+    "stale source keeps historical snapshot",
+    "narrow viewport has no horizontal overflow",
+    "tampered run is not shown as evidence",
+    "failed attempt retained and readable",
+    "older attempts accessible through pagination",
+    "oversize summary is explicit error not empty case",
+    "no external requests",
+    "no browser errors"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "scope": "real core case created by a generated Node fixture; no Lexical diagnosis or human usability claim",
+  "unverified": [
+    "external Perfetto/Chrome navigation",
+    "100 ms visible response",
+    "human usability"
+  ]
+}

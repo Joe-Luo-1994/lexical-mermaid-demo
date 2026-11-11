@@ -1,0 +1,58 @@
+{
+  "kind": "agent-debug-capture",
+  "version": 1,
+  "runId": "1cc1939c-22eb-4bae-a82a-a2e6ce98c987",
+  "clock": {
+    "unit": "ms",
+    "origin": "performance.timeOrigin",
+    "timeOrigin": 1794439069681.3
+  },
+  "events": [],
+  "relations": [],
+  "coverage": {
+    "installed": [],
+    "dropped": 0,
+    "limitations": [
+      "Baseline contains functional artifacts only, no plugin timing probes",
+      "DOM completeness and typing checks do not establish visible-response latency"
+    ]
+  },
+  "artifacts": [
+    "behavior.json",
+    "document.png"
+  ],
+  "findings": [
+    {
+      "id": "baseline-limit",
+      "status": "unknown",
+      "text": "Uninstrumented document content and typing were checked; execution path and visible-response latency are not established.",
+      "eventIds": [],
+      "limitations": [
+        "Behavior artifacts support only the tested content/typing conditions",
+        "No plugin observation installed"
+      ]
+    }
+  ],
+  "nextExperiment": {
+    "question": "Can source-targeted observation recover a truthful call path without changing these functional checks?",
+    "intervention": "Install the generated observation patch and rerun the same operation",
+    "controls": [
+      "Document text hash",
+      "Paragraph and bold count",
+      "Typing behavior",
+      "Same viewport and plugin set"
+    ],
+    "outcomes": [
+      "Matching behavior plus referenced raw calls supports this integration path",
+      "Changed behavior or missing source/raw references invalidates the observation"
+    ]
+  },
+  "capabilities": {
+    "visibleResponse": "unverified",
+    "externalViewer": "unverified"
+  },
+  "costs": {
+    "tokens": null,
+    "fee": null
+  }
+}
