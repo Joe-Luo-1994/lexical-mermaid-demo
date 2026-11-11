@@ -1,0 +1,63 @@
+{
+  "id": "1cc1939c-22eb-4bae-a82a-a2e6ce98c987",
+  "status": "completed",
+  "startedAt": "2026-11-11T23:17:48.222Z",
+  "controllerPid": 8484,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project/capture-adapter.mjs",
+    "--baseline"
+  ],
+  "plan": {
+    "question": "Does the uninstrumented upstream application support this controlled document-open and typing operation?",
+    "outcomes": [
+      "Complete expected content permits source-targeted observation",
+      "Failed content or typing blocks observation comparison"
+    ],
+    "sources": [
+      "src/App.tsx",
+      "src/plugins/DocumentOperationPlugin.jsx",
+      "src/plugins/ToolbarPlugin.tsx",
+      "capture-adapter.mjs",
+      "runtime.json",
+      "runtime-vite.config.mjs",
+      "fixture-provenance.json"
+    ],
+    "limitations": [
+      "Functional baseline only; no plugin timing or visible-response claims"
+    ]
+  },
+  "provenance": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project/capture-adapter.mjs",
+      "--baseline"
+    ],
+    "adapter": {
+      "path": "capture-adapter.mjs",
+      "sha256": "4300bc3b655a3e74fd7af1da59ef70b263639deb319b4b9b56bdcbea0e573283"
+    },
+    "git": {
+      "status": "enclosing-repository",
+      "repositoryRoot": "/workspace/editor-dx",
+      "projectRoot": "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/project",
+      "head": "27ffaccc75d5c86238effcf9344d5398fdac251f",
+      "dirty": false,
+      "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "limitation": "Project is nested inside an enclosing repository; this HEAD is not independent project origin. Only declared source hashes attest copied/untracked contents."
+    },
+    "sourceScope": "Only declared sources and adapter are snapshotted; dependency/build completeness is not attested."
+  },
+  "coreVersion": "0.1.0",
+  "coreSha256": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+  "exitCode": 0,
+  "reason": null,
+  "error": null,
+  "elapsedMs": 2167.6473,
+  "logBytes": 404,
+  "finishedAt": "2026-11-11T23:17:50.392Z",
+  "issues": []
+}

@@ -3,6 +3,7 @@ import {Schema} from 'effect';
 import {realpath} from 'node:fs/promises';
 import {isAbsolute, relative, resolve} from 'node:path';
 import {queryFile} from '../../scripts/report-query.mjs';
+import {queryLocationCase} from '../../debug-core/opencode-query.mjs';
 
 // OpenCode 2.2.5 Promise Plugin API. Opt in via `plugins` config.
 // Kept outside .opencode/plugins so cloning this repository has no plugin side effect.
@@ -11,6 +12,22 @@ export default Plugin.define({
   async setup(ctx) {
     const root = await realpath(ctx.location.directory);
     const registration = await ctx.tool.transform(tools => {
+      tools.add({
+        name: 'editor-debug-case',
+        options: {codemode: false},
+        description: 'Read an agent-debug-case summary or a specific run/event inside this active project. Includes failures, stale-source status, unknown costs and next experiment. Read-only: no commands, recording, uploads or automatic causal verdict. Use runId/eventId or pagination for detail; capture assertions need review.',
+        input: Schema.Struct({
+          casePath: Schema.String,
+          runId: Schema.optional(Schema.String),
+          eventId: Schema.optional(Schema.String),
+          limit: Schema.optional(Schema.Number),
+          offset: Schema.optional(Schema.Number),
+        }),
+        async execute(args) {
+          try { return {content:await queryLocationCase({location:root,...args})}; }
+          catch (error) { return {content:JSON.stringify({error:error instanceof Error?error.message:String(error),next:'Check the case path and active project. This tool accepts the new case directory, not legacy recordings or raw traces.'})}; }
+        },
+      });
       tools.add({
         name: 'editor-evidence',
         options: {codemode: false},

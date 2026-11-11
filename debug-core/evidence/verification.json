@@ -1,0 +1,47 @@
+{
+  "kind": "agent-debug-delivery-verification",
+  "date": "2026-11-11",
+  "tests": {
+    "core": 25,
+    "cliAndOpenCodeBoundary": 2,
+    "generatedProbe": 3,
+    "openCodeSdk": 4,
+    "viewer": 24,
+    "realNavigation": 10,
+    "existingUx": 6,
+    "shippedArchive": 1
+  },
+  "existingChecks": [
+    "production build passed",
+    "fixture/syntax validation passed",
+    "existing rules passed except sandbox-blocked CLI test, which passed when rerun with subprocess support"
+  ],
+  "unverified": [
+    "company case",
+    "autonomous or blind investigation efficacy",
+    "OpenCode Web newtool load/call",
+    "100 ms visible response",
+    "repair comparison",
+    "external Chrome/Perfetto navigation",
+    "Windows process tree cleanup",
+    "human usability improvement"
+  ],
+  "sourceSha256": {
+    "debug-core/verify-viewer.mjs": "0d2aac2a45ef781169161d3ffed8f9184c390719fa278a95eff43d8c19a8a062",
+    "debug-core/opencode-query.mjs": "b34d3d773c81606e2595e81e3cc1e1d86253fb03f19b1456c90236e57ebeb37e",
+    "debug-core/cli.mjs": "3e1cdcdfac487307913b27a8934e759df0386b871cbec386d03d1bfb4797082e",
+    "debug-core/verify-latest-navigation.mjs": "44bf8d8f59e71f713fd6aa63d457a18c4903367747d531c206bc01768db49c47",
+    "debug-core/core.mjs": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+    "debug-core/verify-runtime.mjs": "6f7089080afca8ae4879365fba01e0176331bb97274bba3de9276e2d98705d9f",
+    "debug-core/cli.test.mjs": "7f2e77ba377fe07a516c95c4150fe7446a1b147c3c1276411ce435c6e2507ff1",
+    "debug-core/core.test.mjs": "fb046981ba23bc2ae9fec8113620fb1b28f2e7705247f269a9a8daf0d9f7c22f",
+    "debug-core/verify-navigation.mjs": "36ec220929506e18918b59534462610b5993b849809fadfca4c446de596f0385",
+    "debug-core/serve.mjs": "236fb6edb7301b532679cac092c1fe004bb319c42c4d1c4dba1d80d4ad6691a7",
+    "debug-core/viewer/viewer.css": "9cc267210946244bc117f0c119439912a034a84b16f4b19bb477909c755fee8c",
+    "debug-core/viewer/viewer.js": "389e3586768a69591f2cd84462759c7c890be0b1593394f1e10d3913a2c57f3a",
+    "debug-core/viewer/index.html": "efdfa982a8166ea48d0c76fc40aaea077a156a83c2963d8c4638ad4fcd3e6df9",
+    "docs/integrations/editor-evidence.ts": "d54684f094eb7aa926c1c26489f2ac73aa5fad04c957190da78310bc7bf73f62",
+    "docs/integrations/plugin.test.mjs": "a24d7efd3cb581ee781303f46ee0fb8bd131de06944529330194234c9e428d1e",
+    "debug-core/archive.test.mjs": "c12bd3a2f56161840efcebd5814f8e4bd02733932a8ce090dc21b493b7effd1b"
+  }
+}

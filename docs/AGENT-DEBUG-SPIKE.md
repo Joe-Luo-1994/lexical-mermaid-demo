@@ -1,6 +1,6 @@
 # 第一個可行性實驗：從獨立專案到可追查路徑
 
-依據：[契約 v0.2](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md)。狀態：計畫，尚未執行；本文件不是現成 CLI 或已驗證工具。
+依據：[契約 v0.2](AGENT-DEBUG-CONTRACT.md)、[驗收矩陣](AGENT-DEBUG-ACCEPTANCE.md)。狀態：原始調查實驗計畫。已有 [公開 runtime 接合切片](../debug-core/VALIDATION.md)，但本文件要求的盲測、自主探索及完整能力檢查未完成；不要把工程接合當本實驗全部通過。
 
 ## 要消除的未知
 

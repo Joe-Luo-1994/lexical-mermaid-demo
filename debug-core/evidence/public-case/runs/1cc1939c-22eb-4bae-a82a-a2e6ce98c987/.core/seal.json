@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "runId": "1cc1939c-22eb-4bae-a82a-a2e6ce98c987",
+  "files": {
+    "behavior.json": {
+      "sha256": "d571b34957b38e7a14f443375890355a6167f6664bf6b5031ab455c6c19a4456",
+      "bytes": 449
+    },
+    "document.png": {
+      "sha256": "3ddbe9695b056ca7f63368484d98da4bb1be6fd55d3952ff1337778be6a60324",
+      "bytes": 187019
+    },
+    ".core/sources.json": {
+      "sha256": "72374a0d5af9b79a8f12d5b771d95136d724da9520d827e61a17ea88bcb6ecd3",
+      "bytes": 23729
+    },
+    ".core/attempt.json": {
+      "sha256": "6438d08895c70adb49449ad7fd1e7ab295e84d8b2a96bedc06fc7f90bddbd1f3",
+      "bytes": 2476
+    },
+    "stdout.log": {
+      "sha256": "506f4f3ba65aceabdc080ba3d517972814e6680bb2e2ed74c4deeb18bb72039d",
+      "bytes": 404
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "capture.json": {
+      "sha256": "8ad0ea470de87d1ad730db40e9ed762ac781de93f85aaaaa9e9f9deda6a20d11",
+      "bytes": 1698
+    }
+  }
+}

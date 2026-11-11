@@ -1,6 +1,6 @@
 # Agent Debug v0.2 驗收矩陣
 
-依據：[需求契約](AGENT-DEBUG-CONTRACT.md)。狀態：**驗收設計，尚未執行。** 舊 demo CI 綠燈不能填成下表通過。
+依據：[需求契約](AGENT-DEBUG-CONTRACT.md)。狀態：**完整驗收設計；debug-core 已有局部反例與 runtime 接合測試。** 見 [逐項邊界與交付紀錄](../debug-core/VALIDATION.md)。舊 demo CI 或局部測試綠燈不能填成下表全部通過。
 
 ## 1. 不變條件的反例
 

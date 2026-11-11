@@ -1,0 +1,34 @@
+{
+  "kind": "debug-core-real-case-navigation",
+  "caseId": "28745842-ba71-4ae8-ad76-467611720d7c",
+  "runId": "0031e696-e4c1-4f6d-be26-42f0a1bcfa00",
+  "eventId": "e1",
+  "source": {
+    "path": "src/plugins/DocumentOperationPlugin.jsx",
+    "line": 10,
+    "sha256": "8977fb8c2124c8ab5d6acc43e273a8ac3ca985651935c014d52f980399947aef"
+  },
+  "browser": "156.0.8078.79",
+  "checks": [
+    "same real case",
+    "same real run and event",
+    "correct recorded source line",
+    "source SHA matches pinned snapshot",
+    "source text matches snapshot",
+    "known evidence limitations retained",
+    "real identity and deadline survive handoff",
+    "runtime case narrow layout",
+    "no browser errors",
+    "no external requests"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "scope": "internal exact run/event/pinned source navigation and handoff",
+  "unverified": [
+    "external Chrome/Perfetto navigation",
+    "source attribution semantic correctness",
+    "human usability",
+    "100 ms response",
+    "root cause or improvement"
+  ]
+}

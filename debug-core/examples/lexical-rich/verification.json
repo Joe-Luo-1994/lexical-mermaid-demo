@@ -1,0 +1,168 @@
+{
+  "kind": "agent-debug-runtime-verification",
+  "date": "2026-11-11",
+  "status": "passed-limited-integration",
+  "upstreamCommit": "3d08282ca3e5941a65c45fcf372b4d1fe4dc9d76",
+  "sourceSha256": {
+    "debug-core/core.mjs": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+    "debug-core/examples/lexical-rich/prepare.mjs": "3c2a88264ae467d2826966def9bf923e7833017b5eb756f25a56d9adecdc87e0",
+    "debug-core/examples/lexical-rich/capture-adapter.mjs": "4300bc3b655a3e74fd7af1da59ef70b263639deb319b4b9b56bdcbea0e573283",
+    "debug-core/examples/lexical-rich/probe.js": "fbd9344e490de5fd4cc2d55b3863d537211ec81066b78af7a2bf6c100319b6bd",
+    "debug-core/examples/lexical-rich/probe.test.mjs": "4f5c8b7cd69207142b4f270715e34ff287ec677eb2d3958594610530bb50a428",
+    "debug-core/verify-runtime.mjs": "6f7089080afca8ae4879365fba01e0176331bb97274bba3de9276e2d98705d9f",
+    "package-lock.json": "c478105be0ab3a26f7345468d7aef3cbf1f628624852e7cabeb4d3ef2d07a27e"
+  },
+  "caseId": "28745842-ba71-4ae8-ad76-467611720d7c",
+  "runId": "0031e696-e4c1-4f6d-be26-42f0a1bcfa00",
+  "baselineRunId": "1cc1939c-22eb-4bae-a82a-a2e6ce98c987",
+  "coreSha256": "738e1cddbcab47878ff317edab62a774142a79cbdcb9168964da7adb5c458175",
+  "attempts": [
+    {
+      "id": "1cc1939c-22eb-4bae-a82a-a2e6ce98c987",
+      "status": "completed",
+      "elapsedMs": 2167.6473,
+      "startedAt": "2026-11-11T23:17:48.222Z",
+      "finishedAt": "2026-11-11T23:17:50.392Z"
+    },
+    {
+      "id": "0031e696-e4c1-4f6d-be26-42f0a1bcfa00",
+      "status": "completed",
+      "elapsedMs": 1502.3745790000003,
+      "startedAt": "2026-11-11T23:17:50.429Z",
+      "finishedAt": "2026-11-11T23:17:51.932Z"
+    }
+  ],
+  "budget": {
+    "seconds": 1800,
+    "startedAt": "2026-11-11T23:17:48.193Z",
+    "deadlineAt": "2026-11-11T23:47:48.193Z",
+    "fixtureSetupMs": 100,
+    "investigationElapsedMs": 3768,
+    "baselineWithinDeadline": true,
+    "meaning": "Scripted integration replay, not autonomous agent investigation or performance benchmark"
+  },
+  "browser": "156.0.8078.79",
+  "versions": {
+    "lexical": "0.18.0",
+    "@lexical/react": "0.18.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "vite": "8.3.7",
+    "playwright": "1.65.0"
+  },
+  "events": 4,
+  "relations": {
+    "captured-call": 2,
+    "temporal-association": 1
+  },
+  "behavior": {
+    "paragraphs": {
+      "baseline": 40,
+      "instrumented": 40,
+      "equal": true
+    },
+    "bold": {
+      "baseline": 14,
+      "instrumented": 14,
+      "equal": true
+    },
+    "textSha256": {
+      "baseline": "a2b44350b965b51c84597ae8f7827b9e10ef1bde7d1c22dffc16d0e1e022e555",
+      "instrumented": "a2b44350b965b51c84597ae8f7827b9e10ef1bde7d1c22dffc16d0e1e022e555",
+      "equal": true
+    },
+    "typing": {
+      "baseline": true,
+      "instrumented": true,
+      "equal": true
+    }
+  },
+  "sourceSnapshots": [
+    {
+      "path": "src/App.tsx",
+      "sha256": "e664c0f1e3df0765a10dec6bb1367b530b6ebd4609b999fcc99855d6406a335b"
+    },
+    {
+      "path": "src/plugins/DocumentOperationPlugin.jsx",
+      "sha256": "8977fb8c2124c8ab5d6acc43e273a8ac3ca985651935c014d52f980399947aef"
+    },
+    {
+      "path": "src/plugins/ToolbarPlugin.tsx",
+      "sha256": "cae2d3e710681f246847aa358dbcf6896008dd6465f638fcfd038797e7ccb83f"
+    },
+    {
+      "path": ".debug/probe.js",
+      "sha256": "fbd9344e490de5fd4cc2d55b3863d537211ec81066b78af7a2bf6c100319b6bd"
+    },
+    {
+      "path": "capture-adapter.mjs",
+      "sha256": "4300bc3b655a3e74fd7af1da59ef70b263639deb319b4b9b56bdcbea0e573283"
+    },
+    {
+      "path": "runtime.json",
+      "sha256": "95d98ca63d51cbab7366546aa0ea6369c1ee99f8ec0cc33a7a3e92710c1d038c"
+    },
+    {
+      "path": "runtime-vite.config.mjs",
+      "sha256": "b13e5c705ce0dcb1202ac960a65bc28367b3f81c9d1953f75e940ed3ecb0102e"
+    },
+    {
+      "path": "fixture-provenance.json",
+      "sha256": "24a6ea626112c9fd7a0742ec304433ab9869bf2f03ba9b00b21d97a293865ec6"
+    },
+    {
+      "path": "observation.patch",
+      "sha256": "ac68c1d8c323fcc7b62bfaae56d04fac1bf90373a9e4e2a84d685be9aa3a7484"
+    }
+  ],
+  "artifactDigests": {
+    "raw.json": {
+      "sha256": "04fcb7e8c6f24813a6fc945772c220a44c65e214b3c838e347b508bfde4d7117",
+      "bytes": 1020
+    },
+    "behavior.json": {
+      "sha256": "5d78a7e7001d927aa4b36ed779ef7b271ab308d443f1828138b53922550683ca",
+      "bytes": 448
+    },
+    "chrome-trace.json": {
+      "sha256": "dfca954945d1a03eb813a007ad4b5285ba19f73c34b1ad441ec884780ab28d40",
+      "bytes": 220207
+    },
+    "document.png": {
+      "sha256": "3ddbe9695b056ca7f63368484d98da4bb1be6fd55d3952ff1337778be6a60324",
+      "bytes": 187019
+    },
+    "stdout.log": {
+      "sha256": "da8ed6d725bb2ca2fdcd77541d6df65c1decbf946230ff9867e438342501411a",
+      "bytes": 467
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "capture.json": {
+      "sha256": "2d0355182d0aa824d77e22c080c1788410f1263742c9a9205cd7e3a23cc898a1",
+      "bytes": 4788
+    }
+  },
+  "probeUnitChecks": {
+    "passed": 3,
+    "command": "node debug-core/examples/lexical-rich/probe.test.mjs"
+  },
+  "errors": [],
+  "externalRequests": [],
+  "limitations": [
+    "Scripted integration replay with prewritten example adapter, not autonomous 30-minute discovery or blind evaluation",
+    "Controlled public operation, not a company bottleneck",
+    "One source-targeted generated adapter, not universal instrumentation",
+    "Behavior checks support only these scenarios; not a semantic equivalence proof",
+    "No 100 ms visible-response, performance improvement, or external viewer validation"
+  ],
+  "attemptHistoryNotes": [
+    "Initial preflight failed on incidental favicon404; setup fixture now has explicit emptyfavicon, upstream unchanged",
+    "Earlier integration put full baseline reproduction before case init; superseded by final baseline and observed core-run attempts both inside deadline",
+    "Earlier enclosing-repository Git provenance now explicitly labelled, not mistaken for upstream commit"
+  ],
+  "rawEvidenceLocal": "/workspace/editor-dx/results/debug-runtime/integration-eoPDJI/case",
+  "reproduce": "node debug-core/verify-runtime.mjs"
+}

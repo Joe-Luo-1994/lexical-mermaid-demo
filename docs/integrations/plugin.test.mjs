@@ -8,6 +8,7 @@ import {Schema} from 'effect';
 import {Host} from '@opencode/plugin/host';
 import {Config} from '@opencode/schema/config';
 import plugin from './editor-evidence.ts';
+import {initCase} from '../../debug-core/core.mjs';
 
 const report={schemaVersion:1,id:'sdk-check',environment:{lexical:'0.18.0'},configuration:{mode:'inline'},metrics:{completionProxyMs:10},events:[{id:'e1',kind:'render',label:'render',start:0,duration:8}],diagrams:[],findings:[],limitations:['SDK helper test, not full server validation']};
 
@@ -58,4 +59,21 @@ test('tool rejects outside-location files, including symlinks',async()=>{
     }
     await cleanup();
   }finally{await rm(directory,{recursive:true,force:true});await rm(outside,{recursive:true,force:true});}
+});
+
+test('v2.2.5 plugin registers the new read-only case query without replacing legacy recording support',async()=>{
+  const directory=await mkdtemp(join(tmpdir(),'debug-case-plugin-'));
+  const registered=[];
+  try{
+    await initCase({caseDir:join(directory,'case'),projectRoot:directory,operation:'Open a document',budgetSeconds:60});
+    const cleanup=await plugin.setup({location:{directory},tool:{transform:async callback=>{callback({add:tool=>registered.push(tool)});return {dispose:async()=>{}};}}});
+    assert.deepEqual(registered.map(t=>t.name).sort(),['editor-debug-case','editor-evidence']);
+    const tool=registered.find(t=>t.name==='editor-debug-case');
+    const args=Schema.decodeUnknownSync(tool.input)({casePath:'case',limit:5,offset:0});
+    const result=JSON.parse((await tool.execute(args,{})).content);
+    assert.equal(result.error,undefined);
+    const invalid=JSON.parse((await tool.execute({casePath:'missing'},{})).content);
+    assert.ok(invalid.error);
+    await cleanup();
+  }finally{await rm(directory,{recursive:true,force:true});}
 });
